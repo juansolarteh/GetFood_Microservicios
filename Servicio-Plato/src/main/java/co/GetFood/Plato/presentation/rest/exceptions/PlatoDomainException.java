@@ -8,13 +8,13 @@ import java.util.List;
  * @author wpantoja, ahurtado
  *
  */
-public class ProductDomainException extends Exception {
+public class PlatoDomainException extends Exception {
 	/**
 	 * Listado de errores
 	 */
-	public final List<ProductError> errors;
+	public final List<PlatoError> errors;
 
-	public ProductDomainException(List<ProductError> errors) {
+	public PlatoDomainException(List<PlatoError> errors) {
 		this.errors = errors;
 	}
 }

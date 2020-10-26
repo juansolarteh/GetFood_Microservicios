@@ -8,7 +8,7 @@ import co.GetFood.commons.domain.Plato;
  * Interface del respositorio de clientes
  * @author Libardo Pantoja
  */
-public interface IRestauranteRepository {
+public interface IGetFoodRepository {
     /**
      * Busca un Customer por su ceduka
      * @param id cedula del cliente
@@ -19,4 +19,8 @@ public interface IRestauranteRepository {
     public ArrayList<Plato> getMenu(int idRestaurantes);
     
     public ArrayList<Restaurante> getRestaurantes();
+    
+    public boolean EliminarPlato(int idPlato);
+    
+    public Plato ActualizarPlato(int idPlato, Plato platoActualizacion);
 }
