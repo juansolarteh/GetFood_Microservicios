@@ -1,4 +1,4 @@
-package co.unicauca.product.presentation.rest;
+package co.GetFood.Plato.presentation.rest;
 
 import java.util.List;
 
