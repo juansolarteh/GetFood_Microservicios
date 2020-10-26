@@ -39,10 +39,10 @@ public class GlobalDefaultExceptionHandler {
 	 * @param e ProductDomainException
 	 * @return la excepción en formato Json
 	 */
-	@ExceptionHandler(ProductDomainException.class)
+	@ExceptionHandler(PlatoDomainException.class)
 	@RequestMapping(produces = "application/json")
 	@ResponseBody
-	public ResponseEntity<ErrorsPayload> handleTodoDomainException(ProductDomainException e) {
+	public ResponseEntity<ErrorsPayload> handleTodoDomainException(PlatoDomainException e) {
 		return new ResponseEntity<>(new ErrorsPayload(e.errors), HttpStatus.UNPROCESSABLE_ENTITY);
 
 	}

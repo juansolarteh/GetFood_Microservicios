@@ -8,7 +8,7 @@ import co.GetFood.Plato.domain.service.EnumErrorCodes;
  * @author wpantoja, ahurtado
  *
  */
-public class ProductError {
+public class PlatoError {
 	/**
 	 * Codigo del error
 	 */
@@ -22,7 +22,7 @@ public class ProductError {
 	 */
 	public final String description;
 
-	public ProductError(EnumErrorCodes code, String field, String description) {
+	public PlatoError(EnumErrorCodes code, String field, String description) {
 		this.code = code;
 		this.field = field;
 		this.description = description;

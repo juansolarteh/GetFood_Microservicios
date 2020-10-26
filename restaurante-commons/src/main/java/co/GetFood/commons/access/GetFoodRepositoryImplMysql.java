@@ -18,14 +18,14 @@ import java.util.logging.Logger;
  *
  * @author Libardo, Julio
  */
-public class RestauranteRepositoryImplMysql implements IRestauranteRepository {
+public class GetFoodRepositoryImplMysql implements IGetFoodRepository {
 
     /**
      * Conección con Mysql
      */
     private Connection conn;
 
-    public RestauranteRepositoryImplMysql() {
+    public GetFoodRepositoryImplMysql() {
     }
     /**
      * Busca en la bd un customer
@@ -46,7 +46,7 @@ public class RestauranteRepositoryImplMysql implements IRestauranteRepository {
             pstmt.close();
             this.disconnect();
         } catch (SQLException ex) {
-            Logger.getLogger(RestauranteRepositoryImplMysql.class.getName()).log(Level.SEVERE, "Error al insertar el registro", ex);
+            Logger.getLogger(GetFoodRepositoryImplMysql.class.getName()).log(Level.SEVERE, "Error al insertar el registro", ex);
         }
         return plato;
     }
@@ -70,7 +70,7 @@ public class RestauranteRepositoryImplMysql implements IRestauranteRepository {
             pstmt.close();
             this.disconnect();
         } catch (SQLException ex) {
-            Logger.getLogger(RestauranteRepositoryImplMysql.class.getName()).log(Level.SEVERE, "Error al consultar Customer de la base de datos", ex);
+            Logger.getLogger(GetFoodRepositoryImplMysql.class.getName()).log(Level.SEVERE, "Error al consultar Customer de la base de datos", ex);
         }
         return menu;
     }
@@ -90,7 +90,7 @@ public class RestauranteRepositoryImplMysql implements IRestauranteRepository {
             conn = DriverManager.getConnection(url, username, pwd);
             return 1;
         } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(RestauranteRepositoryImplMysql.class.getName()).log(Level.SEVERE, "Error al consultar Customer de la base de datos", ex);
+            Logger.getLogger(GetFoodRepositoryImplMysql.class.getName()).log(Level.SEVERE, "Error al consultar Customer de la base de datos", ex);
         }
         return -1;
     }
@@ -103,7 +103,7 @@ public class RestauranteRepositoryImplMysql implements IRestauranteRepository {
         try {
             conn.close();
         } catch (SQLException ex) {
-            Logger.getLogger(RestauranteRepositoryImplMysql.class.getName()).log(Level.FINER, "Error al cerrar Connection", ex);
+            Logger.getLogger(GetFoodRepositoryImplMysql.class.getName()).log(Level.FINER, "Error al cerrar Connection", ex);
         }
     }
 
@@ -127,8 +127,36 @@ public class RestauranteRepositoryImplMysql implements IRestauranteRepository {
             pstmt.close();
             this.disconnect();
         } catch (SQLException ex) {
-            Logger.getLogger(RestauranteRepositoryImplMysql.class.getName()).log(Level.SEVERE, "Error al consultar Customer de la base de datos", ex);
+            Logger.getLogger(GetFoodRepositoryImplMysql.class.getName()).log(Level.SEVERE, "Error al consultar Customer de la base de datos", ex);
         }
         return Restaurantes;
     }
+	@Override
+	public boolean EliminarPlato(int idPlato) {
+		ArrayList<Plato> menu = new ArrayList<Plato>();
+        try{
+            this.connect();
+            String sql = "SELECT * from Platos where restid=? ";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, Integer.toString(idRestaurantes));
+            ResultSet res = pstmt.executeQuery();
+            while(res.next()) {      
+                Plato plato = new Plato();
+                plato.setAtrNombre(res.getString("pltNombre"));
+                plato.setAtrDescripcion(res.getString("pltDescripcion"));
+                plato.setAtrPrecio(Integer.parseInt(res.getString("pltPrecio")));
+                menu.add(plato);
+            }
+            pstmt.close();
+            this.disconnect();
+        } catch (SQLException ex) {
+            Logger.getLogger(GetFoodRepositoryImplMysql.class.getName()).log(Level.SEVERE, "Error al consultar Customer de la base de datos", ex);
+        }
+        return menu;
+	}
+	@Override
+	public Plato ActualizarPlato(int idPlato, Plato platoActualizacion) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
