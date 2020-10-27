@@ -1,0 +1,1 @@
+INSERT INTO restaurante (restnit,restnombre,restdireccion,resttelefono,restabierto)VALUES (101,'LA COSECHA','Cra 11 # 3-45',800001,TRUE);
