@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import co.GetFood.Plato.domain.entity.Plato;
 import co.GetFood.Plato.domain.service.IPlatoService;
@@ -23,6 +24,7 @@ import co.GetFood.Plato.presentation.rest.exceptions.PlatoDomainException;
  * @author wpantoja, ahurtado
  *
  */
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
 @RequestMapping("plato")
 public class ProductController {

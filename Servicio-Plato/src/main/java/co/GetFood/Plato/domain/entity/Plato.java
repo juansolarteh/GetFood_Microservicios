@@ -24,16 +24,20 @@ public class Plato implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@Column
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "id_restaurante")
-	private Long idRest;
+	@Column
+	private Long id_rest;
 	
+	@Column
 	private String name;
 
+	@Column
 	private int price;
 	
+	@Column
 	private String description;
 
 	public Long getId() {
@@ -45,11 +49,11 @@ public class Plato implements Serializable {
 	}
 	
 	public Long getIdRest() {
-		return idRest;
+		return id_rest;
 	}
 
 	public void setIdRest(Long idRest) {
-		this.idRest = idRest;
+		this.id_rest = idRest;
 	}
 
 	public String getName() {

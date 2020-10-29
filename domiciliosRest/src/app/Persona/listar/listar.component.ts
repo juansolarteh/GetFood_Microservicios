@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Plato } from 'src/app/Modelo/Plato';
-//import { ServiceService } from '../../Service/service.service';
+import { ServiceService } from '../../Service/service.service';
 
 @Component({
   selector: 'app-listar',
@@ -10,14 +10,14 @@ import { Plato } from 'src/app/Modelo/Plato';
 })
 export class ListarComponent implements OnInit {
 
-  plato:Plato;
-  constructor(){}
-  //constructor(private service:ServiceService, private router:Router){ }
+  platos:Plato[];
+  constructor(private service:ServiceService, private router:Router){ }
 
   ngOnInit(){
-    //this.service.getPlatos()
-    ////this.plato=data;
-    //})
+    this.service.getPlatos()
+    .subscribe(data=>{
+      this.platos=data;
+    })
   }
 
 }

@@ -1,7 +1,7 @@
 export class Plato{
     id:number;
-    pltNombre:String;
-    pltPrecio:number;
-    pltDescripcion:String;
-    pltEstado:boolean;
+    id_rest:number;
+    name:String;
+    price:number;
+    description:String;
 }

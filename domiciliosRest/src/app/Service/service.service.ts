@@ -7,13 +7,12 @@ import { Plato } from '../Modelo/Plato';
 })
 export class ServiceService {
 
-  Plato:Plato;
   constructor(private http:HttpClient) { }
 
-  Url='http://localhost:8080/DomiciliosRestaurantes/platos';
+  Url='http://localhost:8001/plato';
 
   getPlatos(){
-    return this.http.get<Plato>(this.Url);
+    return this.http.get<Plato[]>(this.Url);
   }
 
   createPlato(plato:Plato){

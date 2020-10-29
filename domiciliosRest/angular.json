@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "domiciliosRest"
+    }
+  },
+  "defaultProject": "domiciliosRest",
+  "cli": {
+    "analytics": false
+  }
 }
