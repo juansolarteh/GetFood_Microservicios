@@ -7,17 +7,17 @@
             <form action="">
                 <div class="form-group">
                     <label for="">Nombre del plato:</label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" [(ngModel)] = "plato.name" name="name">
                </div> 
                <div class="form-group">
                     <label for="">Precio:</label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" [(ngModel)] = "plato.price" name="price">
                 </div> 
                 <div class="form-group">
                     <label for="">Descripción:</label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" [(ngModel)] = "plato.description" name="description">
                 </div> 
-                <button (click)="Guardar()"class="btn btn-danger">Guardar</button>
+                <button (click) = "guardar(plato)" class="btn btn-danger">Guardar</button>
             </form>
         </div>
     </div>

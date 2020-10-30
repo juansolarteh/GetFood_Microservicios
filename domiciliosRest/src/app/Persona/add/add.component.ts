@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-//import { ServiceService } from 'src/app/Service/service.service';
+import { exit } from 'process';
+import { Plato } from 'src/app/Modelo/Plato';
+import { ServiceService } from 'src/app/Service/service.service';
 
 @Component({
   selector: 'app-add',
@@ -9,10 +11,17 @@ import { Router } from '@angular/router';
 })
 export class AddComponent implements OnInit {
 
-  constructor(){}
-  //constructor(private router:Router, private service:ServiceService) { }
+  constructor(private router:Router, private service:ServiceService) { }
 
   ngOnInit(): void {
   }
-  Guardar(){}
+
+  plato:Plato = new Plato();
+  guardar(plato){
+    this.service.createPlato(this.plato)
+    .subscribe(data=>{
+      //falta dejar de mostrar componente de agregacion y que se actualice el componente lista
+      alert("Plato añadido..");
+    })
+  }
 }

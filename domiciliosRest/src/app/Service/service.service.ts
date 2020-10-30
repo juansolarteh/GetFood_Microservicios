@@ -18,4 +18,8 @@ export class ServiceService {
   createPlato(plato:Plato){
     return this.http.post<Plato>(this.Url,plato);
   }
+
+  deletePlato(plato:Plato){
+    return this.http.delete<Plato>(this.Url+"/"+plato.id);
+  }
 }

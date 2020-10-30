@@ -20,4 +20,10 @@ export class ListarComponent implements OnInit {
     })
   }
 
+  delete(plato:Plato){
+    this.service.deletePlato(plato)
+    .subscribe(data=>{
+      this.platos=this.platos.filter(p=>p!==plato);
+    })
+  }
 }
