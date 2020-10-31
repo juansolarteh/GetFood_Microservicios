@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="card">
+        <div class="card header">
+        </div>
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr class="text-center">
+                        <th>Nombre</th>
+                        <th>Direccion</th>
+                        <th>Telefono</th>
+                        <th>Estado</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor = "let restaurante of restaurantes" class="text-center">
+                        <td>{{restaurante.restnombre}}</td>
+                        <td>{{restaurante.restdireccion}}</td>
+                        <td>{{restaurante.resttelefono}}</td>
+                        <td>{{restaurante.restabierto}}</td>
+                        <td>
+                            <button (click) = "ListarRest()" class="btn btn-danger" style="margin-left: 10px;">ver Menu</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

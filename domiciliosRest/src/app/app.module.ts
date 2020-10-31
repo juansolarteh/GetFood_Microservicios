@@ -3,9 +3,10 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ListarComponent } from './Persona/listar/listar.component';
-import { AddComponent } from './Persona/add/add.component';
-import { EditComponent } from './Persona/edit/edit.component';
+import { ListarRestComponent } from './Restaurante/listarRest/listar.component';
+import { ListarComponent } from './Plato/listar/listar.component';
+import { AddComponent } from './Plato/add/add.component';
+import { EditComponent } from './Plato/edit/edit.component';
 import { FormsModule } from '@angular/forms';
 import { ServiceService } from '../app/Service/service.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -14,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     AppComponent,
     ListarComponent,
+    ListarRestComponent,
     AddComponent,
     EditComponent
   ],

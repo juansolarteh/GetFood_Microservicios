@@ -15,19 +15,25 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name ="restaurante")
-public class Restaurante{
+public class Restaurante {
 	
 	@Id
+	@Column
 	private Long restnit;
 	
+	@Column
 	private String restnombre;
 	
+	@Column
 	private String restdireccion;
 	
+	@Column
 	private Long resttelefono;
 	
+	@Column
 	private boolean restabierto;
 
+	@Column
 	public Long getRestnit() {
 		return restnit;
 	}

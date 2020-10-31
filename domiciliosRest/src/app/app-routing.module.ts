@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AddComponent } from './Persona/add/add.component';
-import { EditComponent } from './Persona/edit/edit.component';
-import { ListarComponent } from './Persona/listar/listar.component';
+import { ListarRestComponent } from './Restaurante/listarRest/listar.component';
+import { AddComponent } from './Plato/add/add.component';
+import { EditComponent } from './Plato/edit/edit.component';
+import { ListarComponent } from './Plato/listar/listar.component';
 
 const routes: Routes = [
   {path:'listar', component:ListarComponent},
   {path:'add', component:AddComponent},
-  {path:'edit', component:EditComponent}
+  {path:'edit', component:EditComponent},
+  {path:'listarRest',component:ListarRestComponent}
 ];
 
 @NgModule({

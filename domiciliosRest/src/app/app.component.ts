@@ -17,4 +17,8 @@ export class AppComponent {
   Nuevo(){
     this.router.navigate(['add']);
   }
+
+  ListarRest(){
+    this.router.navigate([['listarRest']]);
+  }
 }
