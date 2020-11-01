@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,19 +6,17 @@ import { Router } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent{
   title = 'domiciliosRest';
 
   constructor(private router:Router){}
 
-  Listar(){
+  listarMenuAdministrador(idRest:number){
+    localStorage.setItem("restnit",idRest.toString());
     this.router.navigate(['listar']);
   }
-  Nuevo(){
-    this.router.navigate(['add']);
-  }
 
-  ListarRest(){
-    this.router.navigate([['listarRest']]);
+  listarRest(){
+    this.router.navigate(['listarRest']);
   }
 }

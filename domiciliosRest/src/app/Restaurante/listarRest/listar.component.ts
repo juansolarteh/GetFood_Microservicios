@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { Restaurante } from 'src/app/Modelo/Restaurante';
+import { ListarComponent } from 'src/app/Plato/listar/listar.component';
 import { ServiceService } from '../../Service/service.service';
 
 @Component({
@@ -8,9 +9,10 @@ import { ServiceService } from '../../Service/service.service';
   templateUrl: './listar.component.html',
   styleUrls: ['./listar.component.css']
 })
-export class ListarRestComponent implements OnInit {
+export class ListarRestComponent implements OnInit{
   restaurantes:Restaurante[];
   constructor(private service:ServiceService, private router:Router) { }
+  menu:boolean = false;
 
   ngOnInit(){
     this.service.getRestaurantes()
@@ -19,4 +21,8 @@ export class ListarRestComponent implements OnInit {
     })
   }
 
+  listarMenu(restaurante:number){
+    localStorage.setItem("restnit",restaurante.toString());
+    this.router.navigate(["listar"]);
+  }
 }

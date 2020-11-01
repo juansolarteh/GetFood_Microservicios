@@ -13,8 +13,8 @@ export class ServiceService {
   UrlPlato='http://localhost:8001/plato';
   UrlRestaurante='http://localhost:8006/restaurante';
 
-  getPlatos(){
-    return this.http.get<Plato[]>(this.UrlPlato);
+  getMenu(idRest:number){
+    return this.http.get<Plato[]>(this.UrlPlato+"/rest/"+idRest);
   }
 
   createPlato(plato:Plato){

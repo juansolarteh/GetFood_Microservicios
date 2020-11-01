@@ -145,4 +145,9 @@ public class PlatoImplService implements IPlatoService {
 		platoDao.deleteById(id);
 	}
 
+	@Override
+	public List<Plato> findByIdRest(Long idRest){
+		return (List<Plato>) platoDao.findByIdRest(idRest);
+	}
+
 }

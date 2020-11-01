@@ -56,6 +56,14 @@ public class ProductController {
 		Plato plat = platoService.findById(id);
 		return plat;
 	}
+	
+	
+	@RequestMapping(value = "rest/{id_rest}", method = RequestMethod.GET, produces = "application/json")
+	@ResponseBody
+	public List<Plato> findByIdRest(@PathVariable Long id_rest)  {
+		return  (List<Plato>) platoService.findByIdRest(id_rest);
+	}
+
 
 	/**
 	 * Crear un producto

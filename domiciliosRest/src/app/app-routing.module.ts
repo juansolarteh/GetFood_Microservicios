@@ -4,12 +4,13 @@ import { ListarRestComponent } from './Restaurante/listarRest/listar.component';
 import { AddComponent } from './Plato/add/add.component';
 import { EditComponent } from './Plato/edit/edit.component';
 import { ListarComponent } from './Plato/listar/listar.component';
+import { AppComponent } from './app.component';
 
 const routes: Routes = [
   {path:'listar', component:ListarComponent},
   {path:'add', component:AddComponent},
   {path:'edit', component:EditComponent},
-  {path:'listarRest',component:ListarRestComponent}
+  {path:'listarRest',component:ListarRestComponent},
 ];
 
 @NgModule({

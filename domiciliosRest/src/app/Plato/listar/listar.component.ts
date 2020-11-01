@@ -14,8 +14,8 @@ export class ListarComponent implements OnInit {
   constructor(private service:ServiceService, private router:Router){ }
 
   ngOnInit(){
-    this.service.getPlatos()
-    .subscribe(data=>{
+    let restnit = localStorage.getItem("restnit");
+    this.service.getMenu(+restnit).subscribe(data=>{
       this.platos=data;
     })
   }

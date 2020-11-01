@@ -16,6 +16,8 @@ import co.GetFood.Plato.domain.entity.Plato;
 public interface IPlatoService {
 	public List<Plato> findAll();
 
+	public List<Plato> findByIdRest(Long idRest);
+	
 	public Plato findById(Long id) throws ResourceNotFoundException;
 
 	public Plato create(Plato plato) throws PlatoDomainException;
