@@ -1,7 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { Restaurante } from 'src/app/Modelo/Restaurante';
-import { ListarComponent } from 'src/app/Plato/listar/listar.component';
+import { ListarComponent } from 'src/app/Administrador/listar/listar.component';
 import { ServiceService } from '../../Service/service.service';
 
 @Component({
@@ -20,9 +20,8 @@ export class ListarRestComponent implements OnInit{
       this.restaurantes=data;
     })
   }
-
   listarMenu(restaurante:number){
     localStorage.setItem("restnit",restaurante.toString());
-    this.router.navigate(["listar"]);
+    this.router.navigate(["listarMenu"]);
   }
 }

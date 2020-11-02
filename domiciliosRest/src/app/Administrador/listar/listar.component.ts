@@ -15,7 +15,7 @@ export class ListarComponent implements OnInit {
 
   ngOnInit(){
     let restnit = localStorage.getItem("restnit");
-    this.service.getMenu(+restnit).subscribe(data=>{
+    this.service.getMenuAdmin(+restnit).subscribe(data=>{
       this.platos=data;
     })
   }

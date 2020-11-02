@@ -11,4 +11,6 @@ import co.GetFood.restaurante.presentation.rest.exceptions.RestauranteDomainExce
 public interface IRestauranteService {
 	public List<Restaurante> findAll();
 
+	//public List<Restaurante> findById();
+
 }

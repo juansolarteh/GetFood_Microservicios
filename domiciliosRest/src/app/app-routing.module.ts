@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ListarRestComponent } from './Restaurante/listarRest/listar.component';
-import { AddComponent } from './Plato/add/add.component';
-import { EditComponent } from './Plato/edit/edit.component';
-import { ListarComponent } from './Plato/listar/listar.component';
+import { ListarRestComponent } from './Comprador/listarRest/listar.component';
+import { AddComponent } from './Administrador/add/add.component';
+import { EditComponent } from './Administrador/edit/edit.component';
+import { ListarComponent } from './Administrador/listar/listar.component';
+import { ListarMenuComponent } from './Comprador/listar-menu/listar-menu.component';
 import { AppComponent } from './app.component';
 
 const routes: Routes = [
@@ -11,6 +12,7 @@ const routes: Routes = [
   {path:'add', component:AddComponent},
   {path:'edit', component:EditComponent},
   {path:'listarRest',component:ListarRestComponent},
+  {path:'listarMenu', component:ListarMenuComponent},
 ];
 
 @NgModule({

@@ -13,7 +13,10 @@ export class ServiceService {
   UrlPlato='http://localhost:8001/plato';
   UrlRestaurante='http://localhost:8006/restaurante';
 
-  getMenu(idRest:number){
+  getMenuAdmin(idRest:number){
+    return this.http.get<Plato[]>(this.UrlPlato+"/rest/"+idRest);
+  }
+  getMenuComprador(idRest:number){
     return this.http.get<Plato[]>(this.UrlPlato+"/rest/"+idRest);
   }
 

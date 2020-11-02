@@ -35,4 +35,9 @@ public class RestauranteController {
 	public List<Restaurante> findAll() {
 		return (List<Restaurante>) restauranteService.findAll();
 	}
+	/*
+	@RequestMapping
+	public Restaurante findById() {
+		return (Restaurante) restauranteService.findById();
+	}*/
 }
