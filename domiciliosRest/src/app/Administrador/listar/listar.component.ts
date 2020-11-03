@@ -13,9 +13,12 @@ export class ListarComponent implements OnInit {
   platos:Plato[];
   constructor(private service:ServiceService, private router:Router){ }
 
+  restNit:number;
+
   ngOnInit(){
     let restnit = localStorage.getItem("restnit");
-    this.service.getMenuAdmin(+restnit).subscribe(data=>{
+    this.restNit = +restnit;
+    this.service.getMenu(this.restNit).subscribe(data=>{
       this.platos=data;
     })
   }
@@ -25,5 +28,10 @@ export class ListarComponent implements OnInit {
     .subscribe(data=>{
       this.platos=this.platos.filter(p=>p!==plato);
     })
+  }
+
+  agregarPlato(){
+    localStorage.setItem("restnit",this.restNit.toString());
+    this.router.navigate(['add']);
   }
 }

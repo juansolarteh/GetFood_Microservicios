@@ -1,4 +1,4 @@
-<div class="container col-md-6">
+<div class="container col-md-6" style="margin-top: 10px;"> 
     <div class="card">
         <div class="card header">
             <h3>Agregar Platos</h3>
@@ -17,7 +17,8 @@
                     <label for="">Descripción:</label>
                     <input type="text" class="form-control" [(ngModel)] = "plato.description" name="description">
                 </div> 
-                <button (click) = "guardar(plato)" class="btn btn-danger">Guardar</button>
+                <button (click) = "guardar()" class="btn btn-danger">guardar</button>
+                <button (click) = "atras()" class="btn btn-danger" style="margin-left: 10px;">cancelar</button>
             </form>
         </div>
     </div>

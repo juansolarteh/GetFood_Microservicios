@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgModel } from '@angular/forms';
 import { Router } from '@angular/router';
 import { exit } from 'process';
 import { Plato } from 'src/app/Modelo/Plato';
@@ -12,16 +13,27 @@ import { ServiceService } from 'src/app/Service/service.service';
 export class AddComponent implements OnInit {
 
   constructor(private router:Router, private service:ServiceService) { }
+  plato:Plato = new Plato;
+
+  restNit:number;
 
   ngOnInit(): void {
+    let restnit = localStorage.getItem("restnit");
+    this.restNit = +restnit;
+  }
+  
+  guardar(){
+    this.plato.idRest = this.restNit;
+    this.service.createPlato(this.plato)
+    .subscribe(data=>{ 
+    })
+    alert("Plato añadido..");
+    localStorage.setItem("restnit",this.restNit.toString());
+    this.router.navigate(['listar']);
   }
 
-  plato:Plato = new Plato();
-  guardar(plato){
-    this.service.createPlato(this.plato)
-    .subscribe(data=>{
-      //falta dejar de mostrar componente de agregacion y que se actualice el componente lista
-      alert("Plato añadido..");
-    })
+  atras(){
+    localStorage.setItem("restnit",this.restNit.toString());
+    this.router.navigate(['listar']);
   }
 }

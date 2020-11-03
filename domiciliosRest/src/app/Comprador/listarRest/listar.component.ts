@@ -12,7 +12,6 @@ import { ServiceService } from '../../Service/service.service';
 export class ListarRestComponent implements OnInit{
   restaurantes:Restaurante[];
   constructor(private service:ServiceService, private router:Router) { }
-  menu:boolean = false;
 
   ngOnInit(){
     this.service.getRestaurantes()

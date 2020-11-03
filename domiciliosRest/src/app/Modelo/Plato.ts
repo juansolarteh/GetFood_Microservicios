@@ -1,6 +1,6 @@
 export class Plato{
     id:number;
-    id_rest:number;
+    idRest:number;
     name:String;
     price:number;
     description:String;
