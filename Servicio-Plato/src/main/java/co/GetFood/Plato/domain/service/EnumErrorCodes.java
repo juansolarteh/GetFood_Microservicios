@@ -1,10 +1,10 @@
 package co.GetFood.Plato.domain.service;
 
 /**
- * Códigos de error. Lo usa ProductImplService para hacer validaciones de
+ * Códigos de error. Lo usa PlatoImplService para hacer validaciones de
  * dominio
  * 
- * @author wpantoja, ahurtado
+ * @author Juan Pablo Solarte, Jorge Ivan Solano, Jefferson Tulande
  *
  */
 public enum EnumErrorCodes {

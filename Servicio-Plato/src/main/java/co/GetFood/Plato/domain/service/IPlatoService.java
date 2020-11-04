@@ -7,9 +7,9 @@ import co.GetFood.Plato.presentation.rest.exceptions.ResourceNotFoundException;
 import co.GetFood.Plato.domain.entity.Plato;
 
 /**
- * Interfaz de operaciones de la bd de productos
+ * Interfaz de operaciones de la bd de platos
  * 
- * @author wpantoja, ahurtado
+ * @author Juan Pablo Solarte, Jorge Ivan Solano, Jefferson Tulande
  *
  */
 

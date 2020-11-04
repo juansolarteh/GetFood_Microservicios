@@ -3,9 +3,9 @@ package co.GetFood.Plato.presentation.rest.exceptions;
 import co.GetFood.Plato.domain.service.EnumErrorCodes;
 
 /**
- * Error de un producto
+ * Error de un plato
  * 
- * @author wpantoja, ahurtado
+ * * @author Juan Pablo Solarte, Jorge Ivan Solano, Jefferson Tulande
  *
  */
 public class PlatoError {

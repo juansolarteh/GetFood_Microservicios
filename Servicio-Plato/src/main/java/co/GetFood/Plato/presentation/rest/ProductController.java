@@ -19,9 +19,9 @@ import co.GetFood.Plato.presentation.rest.exceptions.ResourceNotFoundException;
 import co.GetFood.Plato.presentation.rest.exceptions.PlatoDomainException;
 
 /**
- * Servicios web de productos
+ * Servicios web de platos
  * 
- * @author wpantoja, ahurtado
+ * @author Juan Pablo Solarte, Jorge Ivan Solano, Jefferson Tulande
  *
  */
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
@@ -34,7 +34,7 @@ public class ProductController {
 	/**
 	 * Listar todos
 	 * 
-	 * @return listado de productos en json
+	 * @return listado de platos en json
 	 */
 	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
@@ -43,10 +43,10 @@ public class ProductController {
 	}
 
 	/**
-	 * Listar un producto por id
+	 * Listar un plato por id
 	 * 
 	 * @param id identificador
-	 * @return Producto en formato json
+	 * @return Plato en formato json
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "{id}", method = RequestMethod.GET, produces = "application/json")
@@ -58,6 +58,11 @@ public class ProductController {
 	}
 	
 	
+	/**
+	 * listar platos por restaurante.
+	 * @param id_rest identificador del restaurante.
+	 * @return Lista de platos de restaurante con id id_rest.
+	 */
 	@RequestMapping(value = "rest/{id_rest}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
 	public List<Plato> findByIdRest(@PathVariable Long id_rest)  {
@@ -66,10 +71,10 @@ public class ProductController {
 
 
 	/**
-	 * Crear un producto
+	 * Crear un plato
 	 * 
-	 * @param product producto
-	 * @return producto creado
+	 * @param plat plato a crear
+	 * @return Plato creado
 	 */
 
 	@RequestMapping(method = RequestMethod.POST, produces = "application/json")
@@ -81,11 +86,11 @@ public class ProductController {
 	/**
 	 * Editar
 	 * 
-	 * @param product Producto a editar
-	 * @param id      identificador del producto
-	 * @return producto editado
+	 * @param plat Plato a editar
+	 * @param id identificador del plato
+	 * @return plato editado
 	 * @throws ResourceNotFoundException recurso no encontrado
-	 * @throws Exception                 Id no encontrado
+	 * @throws Exception Id no encontrado
 	 */
 	@RequestMapping(value = "{id}", method = RequestMethod.PUT, produces = "application/json")
 	@ResponseBody
@@ -97,7 +102,7 @@ public class ProductController {
 	/**
 	 * Eliminar
 	 * 
-	 * @param id id del producto
+	 * @param id id del plato
 	 * @throws ResourceNotFoundException id no encontrado
 	 */
 

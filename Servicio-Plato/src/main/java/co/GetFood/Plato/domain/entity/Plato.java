@@ -10,9 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * Representa un producto de una tienda. Mapeada con la bd.
+ * Representa un plato de un respectivo restaurante. Mapeado con la bd.
  * 
- * @author wpantoja, ahurtado
+ * @author Juan Pablo Solarte, Jorge Ivan Solano, Jefferson Tulande
  */
 @Entity
 @Table(name = "plato")

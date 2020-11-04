@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * manejar con @ExceptionHandler. Este método recibe la excepción en particular.
  * Se puede manejar todas las excepciones que se desee.
  * 
- * @author wpantoja, ahurtado
+ * @author Juan Pablo Solarte, Jorge Ivan Solano, Jefferson Tulande
  *
  */
 @ControllerAdvice
@@ -34,9 +34,9 @@ public class GlobalDefaultExceptionHandler {
 	}
 
 	/**
-	 * Método para manejar la excepcion ProductDomainException
+	 * Método para manejar la excepcion PlatoDomainException
 	 * 
-	 * @param e ProductDomainException
+	 * @param e PlatoDomainException
 	 * @return la excepción en formato Json
 	 */
 	@ExceptionHandler(PlatoDomainException.class)

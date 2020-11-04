@@ -7,7 +7,7 @@ import co.GetFood.Plato.domain.service.EnumErrorCodes;
 /**
  * Maneja los errores en formato Json. Es utilizada por ErrorsPayload
  * 
- * @author wpantoja, ahurtado
+ * @author Juan Pablo Solarte, Jorge Ivan Solano, Jefferson Tulande
  *
  */
 

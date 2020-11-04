@@ -3,9 +3,9 @@ package co.GetFood.Plato.presentation.rest.exceptions;
 import java.util.List;
 
 /**
- * Lista de errores del dominio para un producto
+ * Lista de errores del dominio para un plato
  * 
- * @author wpantoja, ahurtado
+ * * @author Juan Pablo Solarte, Jorge Ivan Solano, Jefferson Tulande
  *
  */
 public class PlatoDomainException extends Exception {

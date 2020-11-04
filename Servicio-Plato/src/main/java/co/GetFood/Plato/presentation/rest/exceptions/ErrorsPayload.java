@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Clase utilizada por GlobalDefaultExceptionHandler para manerjar los errores.
  * 
- * @author wpantoja, ahurtado
+ * @author Juan Pablo Solarte, Jorge Ivan Solano, Jefferson Tulande
  *
  */
 public class ErrorsPayload {
