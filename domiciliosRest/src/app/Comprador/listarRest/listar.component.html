@@ -1,3 +1,4 @@
+
 <div class="container" style="margin-top: 10px;">
     <div class="card">
         <div class="card header">
@@ -10,7 +11,6 @@
                         <th>Nombre</th>
                         <th>Direccion</th>
                         <th>Telefono</th>
-                        <th>Estado</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -19,9 +19,15 @@
                         <td>{{restaurante.restnombre}}</td>
                         <td>{{restaurante.restdireccion}}</td>
                         <td>{{restaurante.resttelefono}}</td>
-                        <td>{{restaurante.restabierto}}</td>
-                        <td>
-                            <button (click) = "listarMenu(restaurante.restnit)" class="btn btn-danger" style="margin-left: 10px;">ver Menu</button>
+                        <td>    
+                            <div *ngIf="restaurante.restabierto == true; else cerrado">
+                                <button (click) = "listarMenu(restaurante.restnit)" class="btn btn-danger" 
+                                style="margin-left: 10px;">ver Menu</button> 
+                            </div>   
+                            <ng-template #cerrado>
+                                <button (click) = "listarMenu(restaurante.restnit)" class="btn btn-danger" 
+                                style="margin-left: 10px;" disabled>cerrado</button> 
+                            </ng-template>
                         </td>
                     </tr>
                 </tbody>
