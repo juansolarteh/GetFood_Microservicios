@@ -3,10 +3,12 @@ package co.GetFood.restaurante.domain.service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 
 import co.GetFood.restaurante.access.dao.IRestauranteDao;
 import co.GetFood.restaurante.domain.entity.Restaurante;
@@ -33,4 +35,35 @@ public class RestauranteImplService implements IRestauranteService {
 	public List<Restaurante> findAll() {
 		return (List<Restaurante>) restauranteDao.findAll();
 	}
+
+	@Override
+	public Restaurante findById(Long id) throws ResourceNotFoundException {
+		Restaurante rest = restauranteDao.findById(id).orElse(null);
+		if(rest==null) {
+			throw new ResourceNotFoundException();
+		}
+			return rest;
+	}
+	@Override
+	@Transactional
+	public Restaurante update(Restaurante restaurante, Long id) throws ResourceNotFoundException {
+		
+		Restaurante rest = this.findById(id);
+		if (rest == null) {
+			throw new ResourceNotFoundException();
+		}
+		/*
+		List<PlatoError> errors = validateDomain(plato);
+
+		if (!errors.isEmpty()) {
+			throw new PlatoDomainException(errors);
+		}*/
+
+		rest.setRestabierto(restaurante.isRestabierto());
+
+		return restauranteDao.save(rest);
+		
+	}
+
+	
 }

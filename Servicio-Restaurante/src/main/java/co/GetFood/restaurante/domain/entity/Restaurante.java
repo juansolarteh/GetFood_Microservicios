@@ -19,6 +19,7 @@ public class Restaurante {
 	
 	@Id
 	@Column
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long restnit;
 	
 	@Column

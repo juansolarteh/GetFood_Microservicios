@@ -1,6 +1,7 @@
 package co.GetFood.restaurante.presentation.rest;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -35,9 +36,17 @@ public class RestauranteController {
 	public List<Restaurante> findAll() {
 		return (List<Restaurante>) restauranteService.findAll();
 	}
-	/*
-	@RequestMapping
-	public Restaurante findById() {
-		return (Restaurante) restauranteService.findById();
-	}*/
+	
+	@RequestMapping(value = "{id}", method = RequestMethod.GET, produces = "application/json")
+	@ResponseBody
+	public Restaurante findById(@PathVariable Long id) throws ResourceNotFoundException{
+		return restauranteService.findById(id);
+	}
+	
+	@RequestMapping(value = "{restnit}", method = RequestMethod.PUT, produces = "application/json")
+	@ResponseBody
+	public Restaurante update(@RequestBody Restaurante rest,@PathVariable Long restnit) throws ResourceNotFoundException {
+		return restauranteService.update(rest,restnit);
+	}
+	
 }
