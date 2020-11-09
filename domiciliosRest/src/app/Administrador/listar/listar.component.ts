@@ -34,4 +34,9 @@ export class ListarComponent implements OnInit {
     localStorage.setItem("restnit",this.restNit.toString());
     this.router.navigate(['add']);
   }
+
+  editPlato(plato:Plato):void{
+    localStorage.setItem("id",plato.id.toString());
+    this.router.navigate(["edit"]);
+  }
 }

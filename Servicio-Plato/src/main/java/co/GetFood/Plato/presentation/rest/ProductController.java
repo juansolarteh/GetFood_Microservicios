@@ -21,7 +21,7 @@ import co.GetFood.Plato.presentation.rest.exceptions.PlatoDomainException;
 /**
  * Servicios web de platos
  * 
- * @author Juan Pablo Solarte, Jorge Ivan Solano, Jefferson Tulande
+ * @author Juan Pablo Solarte, Jorge Ivan Solano, Jefferson Campo
  *
  */
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
@@ -52,9 +52,7 @@ public class ProductController {
 	@RequestMapping(value = "{id}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
 	public Plato findById(@PathVariable Long id) throws ResourceNotFoundException {
-
-		Plato plat = platoService.findById(id);
-		return plat;
+		return platoService.findById(id);
 	}
 	
 	
@@ -94,7 +92,7 @@ public class ProductController {
 	 */
 	@RequestMapping(value = "{id}", method = RequestMethod.PUT, produces = "application/json")
 	@ResponseBody
-	public Plato update(@RequestBody Plato plat, @PathVariable Long id)
+	public Plato update(@PathVariable Long id, @RequestBody Plato plat)
 			throws PlatoDomainException, ResourceNotFoundException {
 		return platoService.update(id, plat);
 	}

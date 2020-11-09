@@ -11,7 +11,7 @@ import co.GetFood.Plato.domain.entity.Plato;
 
 /**
  * Interfaces DAO de productos
- *@author Juan Pablo Solarte, Jorge Ivan Solano, Jefferson Tulande
+ *@author Juan Pablo Solarte, Jorge Ivan Solano, Jefferson Campo
  *
  */
 public interface IPlatoDao extends CrudRepository<Plato, Long> {

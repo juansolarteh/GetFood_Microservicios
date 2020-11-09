@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * manejar con @ExceptionHandler. Este método recibe la excepción en particular.
  * Se puede manejar todas las excepciones que se desee.
  * 
- * @author Juan Pablo Solarte, Jorge Ivan Solano, Jefferson Tulande
+ * @author Juan Pablo Solarte, Jorge Ivan Solano, Jefferson Campo
  *
  */
 @ControllerAdvice

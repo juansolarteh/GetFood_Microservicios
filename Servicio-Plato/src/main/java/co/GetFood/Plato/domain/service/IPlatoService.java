@@ -9,7 +9,7 @@ import co.GetFood.Plato.domain.entity.Plato;
 /**
  * Interfaz de operaciones de la bd de platos
  * 
- * @author Juan Pablo Solarte, Jorge Ivan Solano, Jefferson Tulande
+ * @author Juan Pablo Solarte, Jorge Ivan Solano, Jefferson Campo
  *
  */
 

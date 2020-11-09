@@ -25,6 +25,22 @@ export class ServiceService {
     return this.http.delete<Plato>(this.UrlPlato+"/"+plato.id);
   }
 
+  /**
+   * Método empleado para editar un plato desde la vista del administrador.
+   * @param plato 
+   */
+  updatePlato(plato:Plato){
+    return this.http.put<Plato>(this.UrlPlato+"/"+plato.id,plato);
+  }
+
+  /**
+   *Método que obtiene un id de un plato en especifico. 
+   * @param id 
+   */
+  getPlatoId(id:number){
+    return this.http.get<Plato>(this.UrlPlato+"/"+id);
+  }
+
   getRestaurantes(){
     return this.http.get<Restaurante[]>(this.UrlRestaurante);
   }

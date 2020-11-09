@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * Metodo de ejecucion
  * 
- * @author Juan Pablo Solarte, Jorge Ivan Solano, Jefferson Tulande
+ * @author Juan Pablo Solarte, Jorge Ivan Solano, Jefferson Campo
  *
  */
 

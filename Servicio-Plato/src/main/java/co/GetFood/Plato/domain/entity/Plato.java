@@ -12,7 +12,7 @@ import javax.persistence.Table;
 /**
  * Representa un plato de un respectivo restaurante. Mapeado con la bd.
  * 
- * @author Juan Pablo Solarte, Jorge Ivan Solano, Jefferson Tulande
+ * @author Juan Pablo Solarte, Jorge Ivan Solano, Jefferson Campo
  */
 @Entity
 @Table(name = "plato")

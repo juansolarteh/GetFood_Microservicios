@@ -25,7 +25,7 @@
                         <td>{{plato.price}}</td>
                         <td></td>
                         <td>
-                            <button class="btn btn-warning">Editar</button>
+                            <button (click) = "editPlato(plato)" class="btn btn-warning" style="margin-left: 10px;">Editar</button>
                             <button (click) = "delete(plato)" class="btn btn-danger" style="margin-left: 10px;">Delete</button>
                         </td>
                     </tr>

@@ -5,7 +5,7 @@ import co.GetFood.Plato.domain.service.EnumErrorCodes;
 /**
  * Error de un plato
  * 
- * * @author Juan Pablo Solarte, Jorge Ivan Solano, Jefferson Tulande
+ * * @author Juan Pablo Solarte, Jorge Ivan Solano, Jefferson Campo
  *
  */
 public class PlatoError {

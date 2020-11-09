@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Lista de errores del dominio para un plato
  * 
- * * @author Juan Pablo Solarte, Jorge Ivan Solano, Jefferson Tulande
+ * * @author Juan Pablo Solarte, Jorge Ivan Solano, Jefferson Campo
  *
  */
 public class PlatoDomainException extends Exception {
