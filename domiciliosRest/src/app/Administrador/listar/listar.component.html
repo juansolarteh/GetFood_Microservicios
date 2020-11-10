@@ -4,11 +4,22 @@
             <h3>Menu</h3>
         </div>
         <div class="card-body">
-            <label class="switch" style="margin-left: 900px;">
-                <input id="estado" type="checkbox">
-                abierto
-                <span class="slider round"></span>
-            </label>
+            <div>
+                <div *ngIf = "restaurante.restabierto == true; else cerrado">
+                    <label class="switch" style="margin-left: 900px;">
+                        <input (click) = "cambiarEstadoRest()" id="estado" type="checkbox" checked>
+                        abierto
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <ng-template #cerrado>
+                    <label class="switch" style="margin-left: 900px;">
+                        <input (click) = "cambiarEstadoRest()" id="estado" type="checkbox">
+                        cerrado
+                        <span class="slider round"></span>
+                    </label>
+                </ng-template>
+            </div>   
             <table class="table table-hover">
                 <thead>
                     <tr class="text-center">

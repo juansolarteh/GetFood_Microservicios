@@ -6,16 +6,19 @@
         <div class="card-body">
             <form action="">
                 <div class="form-group">
-                    <label for="">Nombre del plato:</label>
+                    <label for="name">Nombre del plato:</label>
                     <input type="text" class="form-control" [(ngModel)] = "plato.name" name="name">
+                    <div class="alert" >{{mensajeError("name")}}</div>
                </div> 
                <div class="form-group">
-                    <label for="">Precio:</label>
-                    <input type="text" class="form-control" [(ngModel)] = "plato.price" name="price">
+                    <label for="price">Precio:</label>
+                    <input type="number" class="form-control" [(ngModel)] = "plato.price" name="price">  
+                    <div class="alert" >{{mensajeError("price")}}</div>      
                 </div> 
                 <div class="form-group">
-                    <label for="">Descripción:</label>
+                    <label for="description">Descripción:</label>
                     <input type="text" class="form-control" [(ngModel)] = "plato.description" name="description">
+                    <div class="alert" >{{mensajeError("description")}}</div>
                 </div> 
                 <button (click) = "Actualizar(plato)" class="btn btn-danger">Actualizar</button>
                 <button (click) = "atras()" class="btn btn-danger" style="margin-left: 10px;">Cancelar</button>

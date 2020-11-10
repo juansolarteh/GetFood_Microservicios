@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Plato } from '../Modelo/Plato';
 import { Restaurante } from '../Modelo/Restaurante';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,10 @@ export class ServiceService {
     return this.http.put<Plato>(this.UrlPlato+"/"+plato.id,plato);
   }
 
+  updateEstadoRestaurante(restaurante:Restaurante){
+    return this.http.put<Restaurante>(this.UrlRestaurante+"/"+restaurante.restnit,restaurante);
+  }
+
   /**
    *Método que obtiene un id de un plato en especifico. 
    * @param id 
@@ -43,5 +48,9 @@ export class ServiceService {
 
   getRestaurantes(){
     return this.http.get<Restaurante[]>(this.UrlRestaurante);
+  }
+
+  getRestaurante(id:number){
+    return this.http.get<Restaurante>(this.UrlRestaurante+"/"+id);
   }
 }
