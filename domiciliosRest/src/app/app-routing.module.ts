@@ -6,6 +6,7 @@ import { EditComponent } from './Administrador/edit/edit.component';
 import { ListarComponent } from './Administrador/listar/listar.component';
 import { ListarMenuComponent } from './Comprador/listar-menu/listar-menu.component';
 import { AppComponent } from './app.component';
+import { LoginComponent } from './Administrador/login/login.component';
 
 const routes: Routes = [
   {path:'listar', component:ListarComponent},
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path:'edit', component:EditComponent},
   {path:'listarRest',component:ListarRestComponent},
   {path:'listarMenu', component:ListarMenuComponent},
+  {path:'login',component:LoginComponent},
 ];
 
 @NgModule({

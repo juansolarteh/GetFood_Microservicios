@@ -19,4 +19,7 @@ export class AppComponent{
   listarRest(){
     this.router.navigate(['listarRest']);
   }
+  login(){
+    this.router.navigate(['login'])
+  }
 }
