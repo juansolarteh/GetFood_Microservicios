@@ -19,12 +19,16 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   
   }
-  
-
   login(form:NgForm){
-    console.log(form.value);
-    localStorage.setItem("restnit",form.value.idrest);
-    this.router.navigate(['listar']);
+    
+    console.log(form.value.idrest);
+    if(form.value.idrest === ""){
+      alert("Por favor, escriba un Id para iniciar sesión")
+    }else{
+      localStorage.setItem("restnit",form.value.idrest);
+      this.router.navigate(['listar']);
+    }
+    
   }
   Atras(){
     this.router.navigate(['listarRest'])

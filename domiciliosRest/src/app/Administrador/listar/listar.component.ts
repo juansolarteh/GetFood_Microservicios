@@ -16,16 +16,21 @@ export class ListarComponent implements OnInit {
   constructor(private service:ServiceService, private router:Router){ }
 
   restNit:number;
-
+  bandera:boolean;
   ngOnInit(){
     let restnit = localStorage.getItem("restnit");
     this.restNit = +restnit;
-    this.service.getRestaurante(this.restNit).subscribe(data=>{
+    this.service.getRestaurante(this.restNit).subscribe(
+      data=>{
       this.restaurante=data;
+    },
+      error=>{ 
+        this.router.navigate(['login']);
+        alert("No se encontró el id");
     })
-    this.service.getMenu(this.restNit).subscribe(data=>{
-      this.platos=data;
-    })
+      this.service.getMenu(this.restNit).subscribe(data=>{
+        this.platos=data;
+      })
   }
 
   delete(plato:Plato){
