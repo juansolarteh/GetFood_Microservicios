@@ -22,8 +22,8 @@ export class ListarRestComponent implements OnInit{
       this.restaurantes=data;
     })
   }
-  listarMenu(restaurante:number){
-    localStorage.setItem("restnit",restaurante.toString());
+  listarMenu(restauranteId:number, restauranteNombre){
+    localStorage.setItem("restnit,restname",restauranteId.toString() + "," + restauranteNombre);
     this.router.navigate(["listarMenu"]);
   }
 }

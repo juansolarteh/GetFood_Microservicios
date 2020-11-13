@@ -1,7 +1,7 @@
 export class Plato{
     id:number;
     idRest:number;
-    name:String;
+    name:string;
     price:number;
     description:String;
 

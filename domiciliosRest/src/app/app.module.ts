@@ -13,7 +13,6 @@ import { ServiceService } from '../app/Service/service.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ListarMenuComponent } from './Comprador/listar-menu/listar-menu.component';
 import { LoginComponent } from './Administrador/login/login.component';
-import { CarritoCompraComponent } from './Comprador/carrito-compra/carrito-compra.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 
 @NgModule({
@@ -25,7 +24,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
     EditComponent,
     ListarMenuComponent,
     LoginComponent,
-    CarritoCompraComponent,
   ],
   imports: [
     BrowserModule,

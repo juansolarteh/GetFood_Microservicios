@@ -21,7 +21,7 @@
                         <td>{{restaurante.resttelefono}}</td>
                         <td>    
                             <div *ngIf="restaurante.restabierto == true; else cerrado">
-                                <button (click) = "listarMenu(restaurante.restnit)" class="btn btn-danger" 
+                                <button (click) = "listarMenu(restaurante.restnit, restaurante.restnombre)" class="btn btn-danger" 
                                 style="margin-left: 10px;">ver Menu</button> 
                             </div>   
                             <ng-template #cerrado>

@@ -4,6 +4,7 @@ import { Plato } from 'src/app/Modelo/Plato';
 import { ServiceService } from '../../Service/service.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 import { Pedido } from 'src/app/Modelo/Pedido';
+import { Item } from 'src/app/Modelo/Item';
 
 @Component({
   selector: 'app-listar-menu',
@@ -19,14 +20,20 @@ export class ListarMenuComponent implements OnInit {
 
   //Listado platos
   platos:Plato[];
+  restnit:number;
+  restNombre:string;
   
-  constructor(private service:ServiceService, private router:Router, private modal:NgbModal) { }
+  constructor(private service:ServiceService, private router:Router, public modal:NgbModal) { }
 
   ngOnInit(){
-    let restnit = localStorage.getItem("restnit");
-    this.service.getMenu(+restnit).subscribe(data=>{
+    let str = localStorage.getItem("restnit,restname");
+    this.restnit = +str.split(",")[0];
+    this.restNombre = str.split(",")[1];
+    this.service.getMenu(this.restnit).subscribe(data=>{
       this.platos=data;
     })
+    document.getElementById("miPedido").setAttribute("disabled","true");
+    document.getElementById("circle").setAttribute("disabled","true");
   }
 
   openModalAgregarPlato(contenido, plato:Plato){
@@ -53,6 +60,28 @@ export class ListarMenuComponent implements OnInit {
     }
   }
   
-  AgregarPedido():void{
+  agregarItem():void{
+    if(this.pedido == undefined){
+      this.pedido = new Pedido(this.restnit, this.restNombre)
+      document.getElementById("miPedido").removeAttribute("disabled");
+      document.getElementById("circle").removeAttribute("disabled");
+    } 
+    var item = new Item(this.platoAux.id, this.platoAux.name, this.cantidad, this.platoAux.price)
+    this.pedido.addItem(item)
   } 
+
+  finalizarPedido(){
+    //falta enviar pedido a microservicio
+    this.pedido=undefined
+    document.getElementById("miPedido").setAttribute("disabled","true");
+    document.getElementById("circle").setAttribute("disabled","true");
+  }
+
+  getNumeroItems():number{
+    try {
+      return this.pedido.getNumberItems()
+    } catch (error) {
+      return 0
+    }
+  }
 }
