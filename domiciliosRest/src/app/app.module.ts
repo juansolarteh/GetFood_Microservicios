@@ -13,7 +13,8 @@ import { ServiceService } from '../app/Service/service.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ListarMenuComponent } from './Comprador/listar-menu/listar-menu.component';
 import { LoginComponent } from './Administrador/login/login.component';
-
+import { CarritoCompraComponent } from './Comprador/carrito-compra/carrito-compra.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 
 @NgModule({
   declarations: [
@@ -24,13 +25,15 @@ import { LoginComponent } from './Administrador/login/login.component';
     EditComponent,
     ListarMenuComponent,
     LoginComponent,
+    CarritoCompraComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [ServiceService],
   bootstrap: [AppComponent]

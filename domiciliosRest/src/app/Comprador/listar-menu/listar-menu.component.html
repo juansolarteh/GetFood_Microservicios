@@ -20,7 +20,7 @@
                         <td>{{plato.price}}</td>
                         <td></td>
                         <td>
-                            <button (click) = "AgregarPedido(plato)" class="btn btn-danger" style="margin-left: 10px;">Agregar a Carrito</button>
+                            <button (click) = "openModalAgregarPlato(contenido, plato)" class="btn btn-danger" style="margin-left: 10px;">Ver</button>         
                         </td>
                     </tr>
                 </tbody>
@@ -28,3 +28,25 @@
         </div>
     </div>
 </div>
+
+<ng-template #contenido let-modal>
+    <div class="modal-header">
+        <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
+            <span  aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div>
+            <h3>{{platoAux.name}}</h3>
+            {{platoAux.description}}
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="quantity">
+            <button class="disminuir" (click)="disminuirInput(inputCantidad)">-</button>
+            <input #inputCantidad type="number" class="cantidad" value="1" min="1" (change)="actualizarPrecio(inputCantidad)">     
+            <button class="aumentar" (click)="aumentarInput(inputCantidad)">+</button>
+        </div>
+        <button type="button" class="btn btn-danger" (click)="modal.close()">Agregar a mi pedido ({{platoAux.price * cantidad}})</button>
+    </div>
+</ng-template>
