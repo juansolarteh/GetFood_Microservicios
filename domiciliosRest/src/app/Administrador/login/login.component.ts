@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Restaurante } from 'src/app/Modelo/Restaurante';
 import { ServiceService } from '../../Service/service.service';
-
+import { Error } from 'src/app/Modelo/Error'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,25 +12,39 @@ import { ServiceService } from '../../Service/service.service';
 export class LoginComponent implements OnInit {
   
   restaurante:Restaurante = new Restaurante
-
+  
+  bandera:boolean =  false;
   constructor(private service:ServiceService, private router:Router) { 
   }
-
+  errores:Error[];
   ngOnInit(): void {
   
   }
-  login(form:NgForm){
-    
-    console.log(form.value.idrest);
-    if(form.value.idrest === ""){
-      alert("Por favor, escriba un Id para iniciar sesión")
-    }else{
-      localStorage.setItem("restnit",form.value.idrest);
-      this.router.navigate(['listar']);
-    }
-    
+  login(restnit){
+      if (restnit == null)
+        alert("Por favor, escriba un ID")
+      this.service.getRestaurante(restnit).subscribe(
+        data=>{
+            localStorage.setItem("restnit",restnit);
+            this.router.navigate(['listar']);
+            this.bandera=true;
+        },
+        response=>{
+          if (this.bandera==false){
+            alert(response.error);
+            this.errores = response.error.errores
+          }
+        })
   }
   Atras(){
     this.router.navigate(['listarRest'])
+  }
+
+  mensajeError(field:string):string{
+    if (this.errores == undefined) return "";
+    for(let error of this.errores)
+      if(error.field == field)
+        return error.message;
+    return "";
   }
 }

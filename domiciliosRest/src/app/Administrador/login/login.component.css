@@ -1,0 +1,13 @@
+.alert{
+    color: rgb(253, 0, 0);
+    text-align: left;
+    margin-top: 25px;
+    font: 12px Verdana; 
+}
+
+
+input[type=number]{
+    -webkit-appearance: textfield !important;
+    margin: 0;
+    -moz-appearance: textfield !important;
+}

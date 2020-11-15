@@ -23,10 +23,6 @@ export class ListarComponent implements OnInit {
     this.service.getRestaurante(this.restNit).subscribe(
       data=>{
       this.restaurante=data;
-    },
-      error=>{ 
-        this.router.navigate(['login']);
-        alert("No se encontró el id");
     })
       this.service.getMenu(this.restNit).subscribe(data=>{
         this.platos=data;

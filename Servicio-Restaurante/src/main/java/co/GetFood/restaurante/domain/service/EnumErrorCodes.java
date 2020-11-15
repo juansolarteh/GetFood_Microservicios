@@ -5,6 +5,6 @@ package co.GetFood.restaurante.domain.service;
  * dominio
  */
 public enum EnumErrorCodes {
-	EMPTY_FIELD, INVALID_NUMBER, INVALID_TODO_NUMBER;
+	EMPTY_FIELD, INVALID_NUMBER, INVALID_TODO_NUMBER, NOT_FOUND;
 
 }

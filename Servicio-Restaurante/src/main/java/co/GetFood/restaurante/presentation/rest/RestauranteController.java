@@ -39,13 +39,13 @@ public class RestauranteController {
 	
 	@RequestMapping(value = "{id}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
-	public Restaurante findById(@PathVariable Long id) throws ResourceNotFoundException{
+	public Restaurante findById(@PathVariable Long id) throws RestauranteDomainException, ResourceNotFoundException{
 		return restauranteService.findById(id);
 	}
 	
 	@RequestMapping(value = "{restnit}", method = RequestMethod.PUT, produces = "application/json")
 	@ResponseBody
-	public Restaurante update(@RequestBody Restaurante rest,@PathVariable Long restnit) throws ResourceNotFoundException {
+	public Restaurante update(@RequestBody Restaurante rest,@PathVariable Long restnit) throws RestauranteDomainException, ResourceNotFoundException {
 		return restauranteService.update(rest,restnit);
 	}
 	

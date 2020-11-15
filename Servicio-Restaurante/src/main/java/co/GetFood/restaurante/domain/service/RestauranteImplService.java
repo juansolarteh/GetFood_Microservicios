@@ -37,33 +37,42 @@ public class RestauranteImplService implements IRestauranteService {
 	}
 
 	@Override
-	public Restaurante findById(Long id) throws ResourceNotFoundException {
+	public Restaurante findById(Long id) throws RestauranteDomainException, ResourceNotFoundException {
 		Restaurante rest = restauranteDao.findById(id).orElse(null);
-		if(rest==null) {
-			throw new ResourceNotFoundException();
+		List<RestauranteError> errors = validateDomain(rest);
+		if(!errors.isEmpty()) {
+			throw new RestauranteDomainException(errors);
 		}
-			return rest;
+		return rest;
 	}
 	@Override
 	@Transactional
-	public Restaurante update(Restaurante restaurante, Long id) throws ResourceNotFoundException {
+	public Restaurante update(Restaurante restaurante, Long id) throws RestauranteDomainException, ResourceNotFoundException {
 		
 		Restaurante rest = this.findById(id);
 		if (rest == null) {
 			throw new ResourceNotFoundException();
 		}
-		/*
-		List<PlatoError> errors = validateDomain(plato);
-
-		if (!errors.isEmpty()) {
-			throw new PlatoDomainException(errors);
-		}*/
 
 		rest.setRestabierto(restaurante.isRestabierto());
 
 		return restauranteDao.save(rest);
 		
 	}
-
+	
+	private List<RestauranteError> validateDomain(Restaurante rest) {
+		List<RestauranteError> errors = new ArrayList<>();
+		
+		if (rest == null) {
+			errors.add(new RestauranteError(EnumErrorCodes.NOT_FOUND, "restnit", "No existe ID"));
+		}else {
+			if (rest.getRestnit()<=0) {
+				errors.add(new RestauranteError(EnumErrorCodes.INVALID_NUMBER, "restnit",
+						"El Id debe ser mayor a 0"));
+			}
+		}
+		return errors;
+	}
+	
 	
 }

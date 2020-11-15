@@ -12,8 +12,7 @@ import co.GetFood.restaurante.presentation.rest.exceptions.RestauranteDomainExce
 public interface IRestauranteService {
 	public List<Restaurante> findAll();
 
-	public Restaurante findById(Long id)throws ResourceNotFoundException;
-	
-	public Restaurante update(Restaurante restaurante, Long id) throws ResourceNotFoundException;
+	public Restaurante findById(Long id)throws RestauranteDomainException, ResourceNotFoundException;
+	public Restaurante update(Restaurante restaurante, Long id) throws RestauranteDomainException, ResourceNotFoundException;
 
 }

@@ -132,7 +132,6 @@ public class PlatoImplService implements IPlatoService {
 			errors.add(new PlatoError(EnumErrorCodes.EMPTY_FIELD, "description", "La descripcion del plato es obligatoria"));
 		}
 		return errors;
-
 	}
 
 	/**

@@ -5,10 +5,14 @@
             <h3>Login</h3>
         </div>
         <div class="card-body">
-            <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
-                <input type="text" name="idrest" id="idrest" placeholder="Id Restaurante" ngModel>
-                <button type="submit" class="btn btn-danger" style="margin-left: 20px;" >Ingresar</button>
-                <button (click)="Atras()"class="btn btn-danger" style="margin-left: 20px;" >Atras</button>
+            <form action="">
+                <div class="form-group">
+                    <label for="restnit">Id Restaurante:</label>
+                    <input type="text" class="form-control" [(ngModel)] = "restaurante.restnit" name="restnit">
+                    <div class="alert" >{{mensajeError("restnit")}}</div>
+                </div> 
+                <button (click) = "login(restaurante.restnit)" class="btn btn-danger">Ingresar</button>
+                <button (click) = "Atras()" class="btn btn-danger" style="margin-left: 10px;">Atras</button>
             </form>
         </div>
     </div>
