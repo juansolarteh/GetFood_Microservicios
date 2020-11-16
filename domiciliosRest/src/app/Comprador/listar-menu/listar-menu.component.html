@@ -49,7 +49,7 @@
     <div class="modal-footer">
         <div class="quantity">
             <button class="disminuir" (click)="disminuirInput(inputCantidad)">-</button>
-            <input #inputCantidad type="number" class="cantidad" value="1" min="1" (change)="actualizarPrecio(inputCantidad)">     
+            <input #inputCantidad type="number" class="cantidad" value="1" min="1" max="20" (change)="actualizarPrecio(inputCantidad)">     
             <button class="aumentar" (click)="aumentarInput(inputCantidad)">+</button>
         </div>
         <button type="button" class="btn btn-danger" (click)="agregarItem(modal.close())">Agregar a mi pedido ({{platoAux.price * cantidad}})</button>

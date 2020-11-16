@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Plato } from '../Modelo/Plato';
 import { Restaurante } from '../Modelo/Restaurante';
+import { Pedido } from '../Modelo/Pedido';
 
 
 @Injectable({
@@ -13,6 +14,7 @@ export class ServiceService {
 
   UrlPlato='http://localhost:8001/plato';
   UrlRestaurante='http://localhost:8006/restaurante';
+  UrlPedidos='http://localhost.8007/pedidos';
 
   getMenu(idRest:number){
     return this.http.get<Plato[]>(this.UrlPlato+"/rest/"+idRest);
@@ -52,5 +54,8 @@ export class ServiceService {
 
   getRestaurante(id:number){
     return this.http.get<Restaurante>(this.UrlRestaurante+"/"+id);
+  }
+  getPedidos(id:number){
+    return this.http.get<Pedido[]>(this.UrlPedidos+"/"+id);
   }
 }

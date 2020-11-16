@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Restaurante } from 'src/app/Modelo/Restaurante';
 import { ServiceService } from '../../Service/service.service';
-import { Error } from 'src/app/Modelo/Error'
+import { Error } from 'src/app/Modelo/Error';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -21,20 +21,22 @@ export class LoginComponent implements OnInit {
   
   }
   login(restnit){
-      if (restnit == null)
+      if (restnit == undefined)
         alert("Por favor, escriba un ID")
-      this.service.getRestaurante(restnit).subscribe(
-        data=>{
-            localStorage.setItem("restnit",restnit);
-            this.router.navigate(['listar']);
-            this.bandera=true;
-        },
-        response=>{
-          if (this.bandera==false){
-            alert(response.error);
-            this.errores = response.error.errores
-          }
-        })
+      else{
+        this.service.getRestaurante(restnit).subscribe(
+          data=>{
+              localStorage.setItem("restnit",restnit);
+              this.router.navigate(['listar']);
+              this.bandera=true;
+          },
+          response=>{
+            if (this.bandera==false){
+              this.errores = response.error.errors
+            }
+          })
+      }
+
   }
   Atras(){
     this.router.navigate(['listarRest'])

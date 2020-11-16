@@ -8,8 +8,8 @@
             <form action="">
                 <div class="form-group">
                     <label for="restnit">Id Restaurante:</label>
-                    <input type="text" class="form-control" [(ngModel)] = "restaurante.restnit" name="restnit">
-                    <div class="alert" >{{mensajeError("restnit")}}</div>
+                    <input type="number" class="form-control" [(ngModel)] = "restaurante.restnit" name="restnit">
+                    <div class="alert"  style="text-align: center;" >{{mensajeError("restnit")}}</div>
                 </div> 
                 <button (click) = "login(restaurante.restnit)" class="btn btn-danger">Ingresar</button>
                 <button (click) = "Atras()" class="btn btn-danger" style="margin-left: 10px;">Atras</button>

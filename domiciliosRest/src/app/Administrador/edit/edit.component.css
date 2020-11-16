@@ -5,8 +5,8 @@
     font: 12px Verdana; 
 }
 
-input[type=number]{
-    -webkit-appearance: textfield !important;
-    margin: 0;
-    -moz-appearance: textfield !important;
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
 }

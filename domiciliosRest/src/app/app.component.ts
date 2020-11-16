@@ -22,4 +22,7 @@ export class AppComponent{
   login(){
     this.router.navigate(['login'])
   }
+  listarPedidos(){
+    this.router.navigate(['listarPedidos'])
+  }
 }

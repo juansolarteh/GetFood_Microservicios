@@ -56,4 +56,7 @@ export class ListarComponent implements OnInit {
     .subscribe(data=>{
     })
   }
+  listarPedidos(){
+    this.router.navigate(['listarPedidos']);
+  }
 }
