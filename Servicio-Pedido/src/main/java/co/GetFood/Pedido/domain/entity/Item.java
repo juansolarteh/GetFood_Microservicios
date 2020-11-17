@@ -1,6 +1,8 @@
 package co.GetFood.Pedido.domain.entity;
 
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,19 +10,25 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "item")
-public class Item {
-
-	@Id
-	@Column 
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id_pedido;
+public class Item implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	
 	@Id
 	@Column
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id_producto;
+	private long idItem;
+	
+	@Column
+	private long id_producto;
 	
 	@Column 
 	private String nombre_product;
@@ -33,20 +41,14 @@ public class Item {
 	
 	@Column 
 	private int precio_item;
+	
+	
 
-	public long getId_pedido() {
-		return id_pedido;
-	}
-
-	public void setId_pedido(long id_pedido) {
-		this.id_pedido = id_pedido;
-	}
-
-	public Long getId_producto() {
+	public long getId_producto() {
 		return id_producto;
 	}
 
-	public void setId_producto(Long id_producto) {
+	public void setId_producto(long id_producto) {
 		this.id_producto = id_producto;
 	}
 

@@ -2,7 +2,6 @@ package co.GetFood.Pedido.domain.service;
 
 import java.util.List;
 
-import co.GetFood.Pedido.domain.entity.EntityPedido;
 import co.GetFood.Pedido.domain.entity.Pedido;
 import co.GetFood.Pedido.presentation.rest.exceptions.PedidoDomainException;
 import co.GetFood.Pedido.presentation.rest.exceptions.ResourceNotFoundException;
@@ -16,9 +15,9 @@ import co.GetFood.Pedido.presentation.rest.exceptions.ResourceNotFoundException;
 
 public interface IPedidoService {
 	
-	public List<EntityPedido> findAll();
+	public List<Pedido> findAll();
 
 	public List<Pedido> findByIdRest(Long idRest) throws ResourceNotFoundException;
 
-	public EntityPedido create(EntityPedido pedido) throws PedidoDomainException;
+	public Pedido create(Pedido pedido) throws PedidoDomainException;
 }

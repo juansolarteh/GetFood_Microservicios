@@ -7,8 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
 import co.GetFood.Pedido.access.dao.IPedidoDao;
-import co.GetFood.Pedido.domain.entity.EntityPedido;
+import co.GetFood.Pedido.domain.entity.Item;
 import co.GetFood.Pedido.domain.entity.Pedido;
 import co.GetFood.Pedido.presentation.rest.exceptions.EnumErrorCodes;
 import co.GetFood.Pedido.presentation.rest.exceptions.PedidoDomainException;
@@ -31,6 +32,8 @@ public class PedidoImplService implements IPedidoService {
 	@Autowired
 	private IPedidoDao pedidoDao;
 	
+	
+	
 	/**
 	 * Servicio para buscar todos los platos
 	 * 
@@ -38,8 +41,8 @@ public class PedidoImplService implements IPedidoService {
 	 */
 	@Override
 	@Transactional(readOnly = true) // Para que esté sincronizada con la bd
-	public List<EntityPedido> findAll() {
-		return (List<EntityPedido>) pedidoDao.findAll();
+	public List<Pedido> findAll() {
+		return (List<Pedido>) pedidoDao.findAll();
 	}
 	
 	/**
@@ -49,7 +52,11 @@ public class PedidoImplService implements IPedidoService {
 	 */
 	@Override
 	public List<Pedido> findByIdRest(Long idRest) throws ResourceNotFoundException{
-		return (List<Pedido>) pedidoDao.findByIdRest(idRest);
+		List<Pedido> pedidos =  pedidoDao.findByIdRest(idRest);
+		if (pedidos == null || pedidos.size() < 1) {
+			throw new ResourceNotFoundException();
+		}
+		return pedidos;
 	}
 
 	/**
@@ -60,7 +67,7 @@ public class PedidoImplService implements IPedidoService {
 	 */
 	@Override
 	@Transactional
-	public EntityPedido create(EntityPedido pedido) throws PedidoDomainException{
+	public Pedido create(Pedido pedido) throws PedidoDomainException{
 		List<PedidoError> errors = validateDomain(pedido);
 		if (!errors.isEmpty()) {
 			throw new PedidoDomainException(errors);
@@ -79,7 +86,7 @@ public class PedidoImplService implements IPedidoService {
 	 * @return lista de errores de validación
 	 */
 
-	private List<PedidoError> validateDomain(EntityPedido pedido) {
+	private List<PedidoError> validateDomain(Pedido pedido) {
 		List<PedidoError> errors = new ArrayList<>();
 
 		if (pedido.getNombre_restaurante() == null || pedido.getNombre_restaurante().isBlank()) {
@@ -90,7 +97,7 @@ public class PedidoImplService implements IPedidoService {
 			errors.add(new PedidoError(EnumErrorCodes.EMPTY_FIELD, "direccion", "La dirección del cliente es obligatorio"));
 		}
 
-		if (pedido.getId_rest() <= 0) {
+		if (pedido.getId_restaurante() <= 0) {
 			errors.add(new PedidoError(EnumErrorCodes.INVALID_NUMBER, "idRestaurant",
 					"El nit del restaurante es obligatorio y mayor a cero"));
 		}
@@ -98,14 +105,9 @@ public class PedidoImplService implements IPedidoService {
 		if (pedido.getId_cliente() <= 0) {
 			errors.add(new PedidoError(EnumErrorCodes.INVALID_NUMBER, "idCliente",
 					"El id del cliente es obligatorio y mayor a cero"));
-		}
+		}	
 		
-		if (pedido.getId_pedido() <= 0) {
-			errors.add(new PedidoError(EnumErrorCodes.INVALID_NUMBER, "idPedido",
-					"El id del pedido es obligatorio y mayor a cero"));
-		}
-		
-		if (pedido.getPrecio_pedido() <= 0) {
+		if (pedido.getValor_pedido() <= 0) {
 			errors.add(new PedidoError(EnumErrorCodes.INVALID_NUMBER, "precio",
 					"El precio es obligatorio y mayor a cero"));
 		}
@@ -114,9 +116,38 @@ public class PedidoImplService implements IPedidoService {
 			errors.add(new PedidoError(EnumErrorCodes.INVALID_NUMBER, "telefono",
 					"El telefono del cliente es obligatorio y mayor a cero"));
 		}
-
+		
+		errors.addAll(validateDomain(pedido.getItems()));
 		return errors;
 	}
 
-
+	private List<PedidoError> validateDomain(List<Item> items) {
+		List<PedidoError> errors = new ArrayList<>();
+		for(Item item : items) {
+			if (item.getNombre_product() == null || item.getNombre_product().isBlank()) {
+				errors.add(new PedidoError(EnumErrorCodes.EMPTY_FIELD, "name", "El nombre del plato es obligatorio"));
+			}
+			
+			if (item.getId_producto() <= 0) {
+				errors.add(new PedidoError(EnumErrorCodes.INVALID_NUMBER, "idPlato",
+						"El id del plato es obligatorio y mayor a cero"));
+			}
+			
+			if (item.getPrecio_item() <= 0) {
+				errors.add(new PedidoError(EnumErrorCodes.INVALID_NUMBER, "precioItem",
+						"El precio del item es obligatorio y mayor a cero"));
+			}
+			
+			if (item.getPrecio_producto() <= 0) {
+				errors.add(new PedidoError(EnumErrorCodes.INVALID_NUMBER, "precioProducto",
+						"El precio del producto es obligatorio y mayor a cero"));
+			}
+			
+			if (item.getCantidad_producto() <= 0) {
+				errors.add(new PedidoError(EnumErrorCodes.INVALID_NUMBER, "cantidadProducto",
+						"la cantidad del producto es obligatorio y mayor a cero"));
+			}
+		}
+		return errors;
+	}
 }
