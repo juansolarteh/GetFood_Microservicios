@@ -117,7 +117,12 @@ public class PedidoImplService implements IPedidoService {
 					"El telefono del cliente es obligatorio y mayor a cero"));
 		}
 		
-		errors.addAll(validateDomain(pedido.getItems()));
+		if(pedido.getItems().size() <= 0) {
+			errors.add(new PedidoError(EnumErrorCodes.EMPTY_FIELD, "items",
+					"Es obligatorio agregar un plato al pedido"));
+		}else {
+			errors.addAll(validateDomain(pedido.getItems()));
+		}	
 		return errors;
 	}
 
