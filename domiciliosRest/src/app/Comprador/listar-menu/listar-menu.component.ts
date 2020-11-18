@@ -5,6 +5,7 @@ import { ServiceService } from '../../Service/service.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 import { Pedido } from 'src/app/Modelo/Pedido';
 import { Item } from 'src/app/Modelo/Item';
+import { Error } from 'src/app/Modelo/Error';
 
 @Component({
   selector: 'app-listar-menu',
@@ -17,6 +18,8 @@ export class ListarMenuComponent implements OnInit {
   platoAux:Plato;
   cantidad:number = 1;
   pedido:Pedido;
+  bandera:boolean =  false;
+  errores:Error[];
 
   //Listado platos
   platos:Plato[];
@@ -61,20 +64,33 @@ export class ListarMenuComponent implements OnInit {
   }
   
   agregarItem():void{
-    if(this.pedido == undefined){
+    if(this.pedido == undefined || this.pedido == null){
       this.pedido = new Pedido(this.restnit, this.restNombre)
       document.getElementById("miPedido").removeAttribute("disabled");
       document.getElementById("circle").removeAttribute("disabled");
     } 
     var item = new Item(this.platoAux.id, this.platoAux.name, this.cantidad, this.platoAux.price)
     this.pedido.addItem(item)
+    this.cantidad = 1;
   } 
 
   finalizarPedido(){
-    //falta enviar pedido a microservicio
-    this.pedido=undefined
-    document.getElementById("miPedido").setAttribute("disabled","true");
-    document.getElementById("circle").setAttribute("disabled","true");
+    this.service.createPedido(this.pedido)
+    .subscribe(data => {
+      if(data != undefined || data != null){;
+        this.bandera = true; 
+        this.pedido=null
+        document.getElementById("miPedido").setAttribute("disabled","true")
+        document.getElementById("circle").setAttribute("disabled","true")
+        this.modal.dismissAll()
+        alert("Pedido enviado");
+      }
+    },
+    response => {
+      if(this.bandera == false){
+        this.errores = response.error.errors       
+        } 
+      })  
   }
 
   getNumeroItems():number{
@@ -83,5 +99,18 @@ export class ListarMenuComponent implements OnInit {
     } catch (error) {
       return 0
     }
+  }
+
+  openModalTelDir(modalDirTel){
+    this.modal.dismissAll()
+    this.modal.open(modalDirTel,{size:'m', centered:true});
+  }
+
+  mensajeError(field:string):string{
+    if (this.errores == undefined || this.errores == null) return "";
+    for(let error of this.errores)
+      if(error.field == field)
+        return error.message;
+    return "";
   }
 }

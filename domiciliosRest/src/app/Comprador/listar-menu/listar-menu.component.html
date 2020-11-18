@@ -65,10 +65,49 @@
     <div class="modal-body">
         <div>
             <h3>Mi pedido</h3>
-            aqui va la info del pedido
+            <table class="table table-hover">
+                <thead>
+                    <tr class="text-center">
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor = "let item of pedido.getItems()" class="text-center">
+                        <td>{{item.getcantidad_producto()}}X</td>
+                        <td><strong>{{item.getnombre_product()}}</strong></td>         
+                        <td>${{item.getprecio_item()}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="text-align: center;"><strong>Total ${{pedido.getValorPedido()}}</strong>  </div>    
         </div>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-danger" (click)="finalizarPedido(modal.close())">continuar</button>
+        <button type="button" class="btn btn-danger" (click)="openModalTelDir(modalDirTel)">continuar</button>
+    </div>
+</ng-template>
+
+<ng-template #modalDirTel let-modal>
+    <div class="modal-header">
+        <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
+            <span  aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label>Direccion:</label>
+            <input id="inputDireccion" type="text" class="form-control" [(ngModel)] = "pedido.direccion_pedido">
+            <div class="alert">{{mensajeError("direccion")}}</div>
+        </div> 
+        <div class="form-group">
+            <label>Telefono:</label>
+            <input id="inputTelefono" type="number" class="form-control"  [(ngModel)] = "pedido.telefono_pedido">
+            <div class="alert">{{mensajeError("telefono")}}</div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="finalizarPedido()">Enviar pedido</button>   
     </div>
 </ng-template>

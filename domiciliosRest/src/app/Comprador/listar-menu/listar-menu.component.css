@@ -66,3 +66,10 @@ input[type=number]::-webkit-outer-spin-button {
     margin-top: 3px;
     color: #FF0000;
 }
+
+.alert{
+    color: rgb(253, 0, 0);
+    text-align: left;
+    margin-top: -12px;
+    font: 12px Verdana; 
+}

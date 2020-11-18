@@ -1,36 +1,53 @@
 import { Item } from './Item'
 
 export class Pedido{
-    private idRestaurante:number
-    private nombreRestaurante:string
-    private idCliente:number=99901
-    private telefonoCliente:number
-    private direccionPedido:string
-    private valorPedido:number = 0
+    private id_restaurante:number
+    private nombre_restaurante:string
+    private id_cliente:number=99901
+    telefono_pedido:number
+    direccion_pedido:string
+    private valor_pedido:number = 0
     private items:Item[]
 
     constructor(idRest:number, nombreRestaurante:string){
-        this.idRestaurante = idRest
-        this.nombreRestaurante = nombreRestaurante
+        this.id_restaurante = idRest
+        this.nombre_restaurante = nombreRestaurante
         this.items = new Array;
     };
 
     private getPositionItem(idPlato:number):number{
         for (let index = 0; index < this.items.length; index++) {
-            if(this.items[index].getIdPlato() == idPlato) return index
+            if(this.items[index].getid_producto() == idPlato) return index
         }
         return -1
     }
 
+    setDireccion(direccion:string){
+        this.direccion_pedido = direccion
+    }
+
+    setTelefono(telefono:number){
+        this.telefono_pedido = telefono
+    }
+
+    getValorPedido():number{
+        return this.valor_pedido
+    }
+
+    getItems(): Item[]{
+        return this.items;
+    }
+
     addItem(item:Item){
-        var position = this.getPositionItem(item.getIdPlato())
+        var position = this.getPositionItem(item.getid_producto())
         if(position < 0){
             this.items.push(item)
-            this.valorPedido += item.getPrecioItem()
+            this.valor_pedido += item.getprecio_item()
         }else{
-            var numberAux = this.items[position].getPrecioItem() - item.getPrecioItem()
-            this.items[position].setCantidadPlato(item.getCantidadPlato())
-            this.valorPedido -= numberAux    
+            var numberAux = this.items[position].getprecio_item() - item.getprecio_item()
+            this.items[position].setcantidad_producto(item.getcantidad_producto())
+            this.items[position].setprecio_item(item.getprecio_producto())
+            this.valor_pedido -= numberAux    
         }
     }
 

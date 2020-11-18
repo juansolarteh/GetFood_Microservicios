@@ -1,31 +1,43 @@
 export class Item{
-    private idPlato:number
-    private nombrePlato:string
-    private cantidadPlato:number
-    private precioPlato:number
-    private precioItem:number
+    private id_producto:number
+    private nombre_product:string
+    private cantidad_producto:number
+    private precio_producto:number
+    private precio_item:number
 
-    constructor(idPlato:number, nombrePlato:string, cantidadPlato:number, precioPlato:number){
-        this.idPlato = idPlato
-        this.nombrePlato = nombrePlato
-        this.cantidadPlato = cantidadPlato
-        this.precioPlato = precioPlato
-        this.precioItem = cantidadPlato * precioPlato
+    constructor(id_producto:number, nombre_product:string, cantidad_producto:number, precio_producto:number){
+        this.id_producto = id_producto
+        this.nombre_product = nombre_product
+        this.cantidad_producto = cantidad_producto
+        this.precio_producto = precio_producto
+        this.precio_item = cantidad_producto * precio_producto
     }
 
-    getIdPlato():number{
-        return this.idPlato
+    getprecio_producto():number{
+        return this.precio_producto
     }
 
-    getPrecioItem():number{
-        return this.precioItem
+    setprecio_item(cantidad:number){
+        this.precio_item=cantidad;
     }
 
-    setCantidadPlato(cantidad:number){
-        this.cantidadPlato=cantidad;
+    getnombre_product():string{
+        return this.nombre_product
     }
 
-    getCantidadPlato():number{
-        return this.cantidadPlato
+    getid_producto():number{
+        return this.id_producto
+    }
+
+    getprecio_item():number{
+        return this.precio_item
+    }
+
+    setcantidad_producto(cantidad:number){
+        this.cantidad_producto=cantidad;
+    }
+
+    getcantidad_producto():number{
+        return this.cantidad_producto
     }
 }

@@ -14,7 +14,7 @@ export class ServiceService {
 
   UrlPlato='http://localhost:8001/plato';
   UrlRestaurante='http://localhost:8006/restaurante';
-  UrlPedidos='http://localhost.8007/pedidos';
+  UrlPedidos='http://localhost:8009/pedidos';
 
   getMenu(idRest:number){
     return this.http.get<Plato[]>(this.UrlPlato+"/rest/"+idRest);
@@ -57,5 +57,9 @@ export class ServiceService {
   }
   getPedidos(id:number){
     return this.http.get<Pedido[]>(this.UrlPedidos+"/"+id);
+  }
+
+  createPedido(pedido:Pedido){
+    return this.http.post<Pedido>(this.UrlPedidos,pedido)
   }
 }
