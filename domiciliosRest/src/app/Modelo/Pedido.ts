@@ -6,8 +6,8 @@ export class Pedido{
     private id_cliente:number=99901
     telefono_pedido:number
     direccion_pedido:string
-    private valor_pedido:number = 0
-    private items:Item[]
+    valor_pedido:number = 0
+    items:Item[]
 
     constructor(idRest:number, nombreRestaurante:string){
         this.id_restaurante = idRest
@@ -31,9 +31,15 @@ export class Pedido{
     }
 
     getValorPedido():number{
-        return this.valor_pedido
+        return this.valor_pedido;
     }
 
+    getTelefono():number{
+        return this.telefono_pedido;
+    }
+    getDireccion():string{
+        return this.direccion_pedido;
+    }
     getItems(): Item[]{
         return this.items;
     }

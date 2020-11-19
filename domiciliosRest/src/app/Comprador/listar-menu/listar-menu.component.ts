@@ -77,7 +77,7 @@ export class ListarMenuComponent implements OnInit {
   finalizarPedido(){
     this.service.createPedido(this.pedido)
     .subscribe(data => {
-      if(data != undefined || data != null){;
+      if(data != undefined && data != null){;
         this.bandera = true; 
         this.pedido=null
         document.getElementById("miPedido").setAttribute("disabled","true")

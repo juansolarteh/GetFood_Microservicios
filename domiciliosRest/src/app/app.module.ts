@@ -25,7 +25,7 @@ import { ListarPedidosComponent } from './Administrador/listar-pedidos/listar-pe
     EditComponent,
     ListarMenuComponent,
     LoginComponent,
-    ListarPedidosComponent,
+    ListarPedidosComponent
   ],
   imports: [
     BrowserModule,

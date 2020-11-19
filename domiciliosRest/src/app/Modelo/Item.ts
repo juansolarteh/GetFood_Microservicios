@@ -1,9 +1,9 @@
 export class Item{
-    private id_producto:number
-    private nombre_product:string
-    private cantidad_producto:number
-    private precio_producto:number
-    private precio_item:number
+    id_producto:number
+    nombre_product:string
+    cantidad_producto:number
+    precio_producto:number
+    precio_item:number
 
     constructor(id_producto:number, nombre_product:string, cantidad_producto:number, precio_producto:number){
         this.id_producto = id_producto

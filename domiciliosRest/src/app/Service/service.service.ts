@@ -56,7 +56,7 @@ export class ServiceService {
     return this.http.get<Restaurante>(this.UrlRestaurante+"/"+id);
   }
   getPedidos(id:number){
-    return this.http.get<Pedido[]>(this.UrlPedidos+"/"+id);
+    return this.http.get<Pedido[]>(this.UrlPedidos+"/rest/"+id);
   }
 
   createPedido(pedido:Pedido){

@@ -4,23 +4,46 @@
             <h3>Mis Pedidos</h3>
         </div>
         <div class="card-body">
+            <br>
+            <br>
             <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>Id Pedido</th>
-                        <th>Plato</th>
-                        <th>Descripción</th>
-                        <th>Precio</th>
+
+                <tbody>
+                    <tr *ngFor = "let pedido of pedidos" class="text-center">
+                        <td>
+                            <div class="Padre">
+                                <div class="Hijo">
+                                    <strong>Dirección:</strong>{{pedido.direccion_pedido}}
+                                    <br>
+                                    <strong>Telefono:</strong>{{pedido.telefono_pedido}}
+                                    <br>
+                                    <strong>Valor Total:</strong>{{pedido.valor_pedido}}
+                                </div>
+                            
+                            </div>
+                        </td>
+                        <td>
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th>Cantidad</th>
+                                        <th>Plato</th>
+                                        <th>Precio</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor = "let item of pedido.items" class="text-center">
+                                        <td>{{item.cantidad_producto}}X</td>
+                                        <td><strong>{{item.nombre_product}}</strong></td>         
+                                        <td>${{item.precio_item}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
                     </tr>
-                </thead>
-                <tr class="text-center">
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <button (click)="Atras()" class="btn btn-danger" style="float:left;">Atras</button>
-                    </td>
-                </tr>
+                </tbody>
             </table>
+            <button (click) = "Atras()" class="btn btn-warning" style="margin-bottom: 10px;">Atras</button>
         </div>
     </div>
 </div>

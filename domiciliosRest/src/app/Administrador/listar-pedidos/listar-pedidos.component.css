@@ -1,0 +1,11 @@
+.Padre {
+    display:table;
+    height:200px;
+    margin-left: 20%;
+    
+ }
+ .Hijo {
+    display: table-cell;
+    vertical-align: middle;
+    
+ }
