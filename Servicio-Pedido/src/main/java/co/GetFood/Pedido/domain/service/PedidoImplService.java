@@ -18,7 +18,7 @@ import co.GetFood.Pedido.presentation.rest.exceptions.ResourceNotFoundException;
 
 
 /**
- * Implementación de la Interfaz IPlatoService
+ * Implementación de la Interfaz IPedidoService
  * 
  * @author Juan Pablo Solarte, Jorge Ivan Solano, Jefferson Campo
  *
@@ -27,7 +27,7 @@ import co.GetFood.Pedido.presentation.rest.exceptions.ResourceNotFoundException;
 @Service
 public class PedidoImplService implements IPedidoService {
 	/**
-	 * Inyección de plato Dao
+	 * Inyección de pedido Dao
 	 */
 	@Autowired
 	private IPedidoDao pedidoDao;
@@ -35,9 +35,9 @@ public class PedidoImplService implements IPedidoService {
 	
 	
 	/**
-	 * Servicio para buscar todos los platos
+	 * Servicio para buscar todos los pedidos
 	 * 
-	 * @return Listado de platos
+	 * @return Listado de pedidos
 	 */
 	@Override
 	@Transactional(readOnly = true) // Para que esté sincronizada con la bd
@@ -48,7 +48,7 @@ public class PedidoImplService implements IPedidoService {
 	/**
 	 * Busca los pedidos de un restaurante.
 	 * @param idRest. Identificador del restaurante.
-	 * @return List<Plato> Lista de pedidos de restaurante con id idRest.
+	 * @return List<Pedido> Lista de pedidos de restaurante con id idRest.
 	 */
 	@Override
 	public List<Pedido> findByIdRest(Long idRest) throws ResourceNotFoundException{
@@ -62,8 +62,8 @@ public class PedidoImplService implements IPedidoService {
 	/**
 	 * Crea un nuevo pedido
 	 * 
-	 * @param plat plato a crear en la bd
-	 * @return Plato creado
+	 * @param pedido Pedido a crear en la bd
+	 * @return Pedido creado
 	 */
 	@Override
 	@Transactional
@@ -79,10 +79,10 @@ public class PedidoImplService implements IPedidoService {
 	
 	
 	/**
-	 * Aplica validaciones o reglas del dominio para un plato. Antes de ser
+	 * Aplica validaciones o reglas del dominio para un pedido. Antes de ser
 	 * agregado o modificado.
 	 * 
-	 * @param plato plato a validar
+	 * @param pedido pedido a validar
 	 * @return lista de errores de validación
 	 */
 

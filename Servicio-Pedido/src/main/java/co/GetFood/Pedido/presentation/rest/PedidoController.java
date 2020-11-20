@@ -22,7 +22,7 @@ import co.GetFood.Pedido.presentation.rest.exceptions.ResourceNotFoundException;
 
 
 /**
- * Servicios web de platos
+ * Servicios web de pedido
  * 
  * @author Juan Pablo Solarte, Jorge Ivan Solano, Jefferson Campo
  *
@@ -38,7 +38,7 @@ public class PedidoController {
 	/**
 	 * Listar todos
 	 * 
-	 * @return listado de platos en json
+	 * @return listado de pedidos en json
 	 */
 	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
@@ -48,9 +48,9 @@ public class PedidoController {
 	
 	
 	/**
-	 * listar platos por restaurante.
+	 * listar pedidos por restaurante.
 	 * @param id_rest identificador del restaurante.
-	 * @return Lista de platos de restaurante con id id_rest.
+	 * @return Lista de pedidos de restaurante con id id_rest.
 	 * @throws ResourceNotFoundException 
 	 * @throws PedidoDomainException 
 	 */
@@ -62,10 +62,10 @@ public class PedidoController {
 
 
 	/**
-	 * Crear un plato
+	 * Crear un pedido
 	 * 
-	 * @param plat plato a crear
-	 * @return Plato creado
+	 * @param pedido Pedido a crear
+	 * @return Pedido creado
 	 */
 
 	@RequestMapping(method = RequestMethod.POST, produces = "application/json")

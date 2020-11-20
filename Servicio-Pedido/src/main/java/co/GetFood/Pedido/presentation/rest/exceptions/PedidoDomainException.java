@@ -3,7 +3,7 @@ package co.GetFood.Pedido.presentation.rest.exceptions;
 import java.util.List;
 
 /**
- * Lista de errores del dominio para un plato
+ * Lista de errores del dominio para un Pedido
  * 
  * * @author Juan Pablo Solarte, Jorge Ivan Solano, Jefferson Campo
  *

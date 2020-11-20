@@ -11,7 +11,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
+/**
+ * Representa un item de un pedido. Mapeado con la BD.
+ * 
+ * @author Juan Pablo Solarte, Jorge Ivan Solano, Jefferson Campo
+ *
+ */
 @Entity
 @Table(name = "item")
 public class Item implements Serializable{

@@ -14,7 +14,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
+/**
+ * Representa un pedido de un respectivo restaurante. Mapeado con la BD.
+ * 
+ * @author Juan Pablo Solarte, Jorge Ivan Solano, Jefferson Campo
+ *
+ */
 @Entity
 @Table(name = "pedidos")
 public class Pedido implements Serializable{

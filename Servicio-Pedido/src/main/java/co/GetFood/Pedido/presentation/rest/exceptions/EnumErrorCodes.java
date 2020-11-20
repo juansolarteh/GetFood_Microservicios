@@ -1,7 +1,7 @@
 package co.GetFood.Pedido.presentation.rest.exceptions;
 
 /**
- * Códigos de error. Lo usa PlatoImplService para hacer validaciones de
+ * Códigos de error. Lo usa PedidioImplService para hacer validaciones de
  * dominio
  * 
  * @author Juan Pablo Solarte, Jorge Ivan Solano, Jefferson Campo

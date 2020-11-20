@@ -34,9 +34,9 @@ public class GlobalDefaultExceptionHandler {
 	}
 
 	/**
-	 * Método para manejar la excepcion PlatoDomainException
+	 * Método para manejar la excepcion PedidoDomainException
 	 * 
-	 * @param e PlatoDomainException
+	 * @param e PedidoDomainException
 	 * @return la excepción en formato Json
 	 */
 	@ExceptionHandler(PedidoDomainException.class)

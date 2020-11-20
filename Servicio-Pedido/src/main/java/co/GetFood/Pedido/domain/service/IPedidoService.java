@@ -7,7 +7,7 @@ import co.GetFood.Pedido.presentation.rest.exceptions.PedidoDomainException;
 import co.GetFood.Pedido.presentation.rest.exceptions.ResourceNotFoundException;
 
 /**
- * Interfaz de operaciones de la bd de platos
+ * Interfaz de operaciones de la bd de pedidos
  * 
  * @author Juan Pablo Solarte, Jorge Ivan Solano, Jefferson Campo
  *

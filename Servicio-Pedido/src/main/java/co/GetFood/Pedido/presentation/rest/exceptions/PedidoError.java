@@ -2,7 +2,7 @@ package co.GetFood.Pedido.presentation.rest.exceptions;
 
 
 /**
- * Error de un plato
+ * Error de un Pedido
  * 
  * * @author Juan Pablo Solarte, Jorge Ivan Solano, Jefferson Campo
  *
