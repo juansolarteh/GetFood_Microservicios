@@ -3,9 +3,9 @@ package co.GetFood.restaurante.presentation.rest.exceptions;
 import co.GetFood.restaurante.domain.service.EnumErrorCodes;
 
 /**
- * Error de un producto
+ * Error de un restaurante
  * 
- * @author wpantoja, ahurtado
+ * * @author Juan Pablo Solarte, Jorge Ivan Solano, Jefferson Campo
  *
  */
 public class RestauranteError {

@@ -16,26 +16,38 @@ import co.GetFood.restaurante.presentation.rest.exceptions.ResourceNotFoundExcep
 import co.GetFood.restaurante.presentation.rest.exceptions.RestauranteDomainException;
 import co.GetFood.restaurante.presentation.rest.exceptions.RestauranteError;
 
-
+/**
+ * 
+ * @author Juan Pablo Solarte, Jorge Ivan Solano, Jefferson Campo
+ * Implementación de la Interfaz IRestauranteService
+ *
+ */
 @Service
 public class RestauranteImplService implements IRestauranteService {
 	/**
-	 * Inyección de producto Dao
+	 * Inyección de Restaurante Dao
 	 */
 	@Autowired
 	private IRestauranteDao restauranteDao;
 
 	/**
-	 * Servicio para buscar todos los productos
+	 * Servicio para buscar todos los restaurantes
 	 * 
-	 * @return Listado de productos
+	 * 
+	 * @return Listado de restaurantes
 	 */
 	@Override
 	@Transactional(readOnly = true) // Para que esté sincronizada con la bd
 	public List<Restaurante> findAll() {
 		return (List<Restaurante>) restauranteDao.findAll();
 	}
-
+	
+	/**
+	 * Servicio para buscar restaurante por ID
+	 * 
+	 * @param id del restaurante
+	 * @return Restaurante
+	 */
 	@Override
 	public Restaurante findById(Long id) throws RestauranteDomainException, ResourceNotFoundException {
 		Restaurante rest = restauranteDao.findById(id).orElse(null);
@@ -45,6 +57,13 @@ public class RestauranteImplService implements IRestauranteService {
 		}
 		return rest;
 	}
+	/**
+	 * Servicio para actualizar el estado del restaurante
+	 * 
+	 * @param Objeto Restaurante
+	 * @param Id Restaurante
+	 * @return Restaurante modificado
+	 */
 	@Override
 	@Transactional
 	public Restaurante update(Restaurante restaurante, Long id) throws RestauranteDomainException, ResourceNotFoundException {
@@ -60,6 +79,11 @@ public class RestauranteImplService implements IRestauranteService {
 		
 	}
 	
+	/**
+	 * Valida las reglas del dominio para las operaciones requeridas.
+	 * @param restaurante que se desea validar 
+	 * @return lista de errores al valdidar
+	 */
 	private List<RestauranteError> validateDomain(Restaurante rest) {
 		List<RestauranteError> errors = new ArrayList<>();
 		

@@ -1,7 +1,7 @@
 package co.GetFood.restaurante.domain.service;
 
 /**
- * Códigos de error. Lo usa ProductImplService para hacer validaciones de
+ * Códigos de error. Lo usa RestauranteImplService para hacer validaciones de
  * dominio
  */
 public enum EnumErrorCodes {

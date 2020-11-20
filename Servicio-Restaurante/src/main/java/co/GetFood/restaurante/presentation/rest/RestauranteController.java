@@ -19,6 +19,11 @@ import co.GetFood.restaurante.domain.service.IRestauranteService;
 import co.GetFood.restaurante.presentation.rest.exceptions.ResourceNotFoundException;
 import co.GetFood.restaurante.presentation.rest.exceptions.RestauranteDomainException;
 
+/**
+ * Servicio web de restaurantes
+ * @author Juan Pablo Solarte, Jorge Ivan Solano, Jefferson Campo
+ *
+ */
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
 @RequestMapping("restaurante")
@@ -27,9 +32,9 @@ public class RestauranteController {
 	private IRestauranteService restauranteService;
 
 	/**
-	 * Listar todos
+	 * Listar todos los restaurantes
 	 * 
-	 * @return listado de productos en json
+	 * @return listado de restaurantes en json
 	 */
 	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
@@ -37,12 +42,27 @@ public class RestauranteController {
 		return (List<Restaurante>) restauranteService.findAll();
 	}
 	
+	/**
+	 * Obtener restaurante por ID
+	 * @param id del restaurante
+	 * @return Restaurante encontrado por el Id 
+	 * @throws RestauranteDomainException
+	 * 
+	 */
 	@RequestMapping(value = "{id}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
 	public Restaurante findById(@PathVariable Long id) throws RestauranteDomainException, ResourceNotFoundException{
 		return restauranteService.findById(id);
 	}
 	
+	/**
+	 * Actualizar estado de restaurante 
+	 * @param rest:Restaurante
+	 * @param restnit: Id del restaurante
+	 * @return Restaurante actualizado
+	 * @throws RestauranteDomainException
+	 * 
+	 */
 	@RequestMapping(value = "{restnit}", method = RequestMethod.PUT, produces = "application/json")
 	@ResponseBody
 	public Restaurante update(@RequestBody Restaurante rest,@PathVariable Long restnit) throws RestauranteDomainException, ResourceNotFoundException {

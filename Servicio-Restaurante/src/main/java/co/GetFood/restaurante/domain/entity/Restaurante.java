@@ -12,11 +12,18 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-
+/**
+ * 
+ * @author Juan Pablo Solarte, Jorge Ivan Solano, Jefferson Campo
+ *
+ *	Representa a un restaurante, mapeado con la BD.
+ */
 @Entity
 @Table(name ="restaurante")
 public class Restaurante {
-	
+	/**
+	 * Atributos
+	 */
 	@Id
 	@Column
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,7 +40,11 @@ public class Restaurante {
 	
 	@Column
 	private boolean restabierto;
-
+	
+	/**
+	 * 
+	 * Getters and Setters
+	 */
 	@Column
 	public Long getRestnit() {
 		return restnit;
