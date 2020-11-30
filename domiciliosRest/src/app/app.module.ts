@@ -14,7 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ListarMenuComponent } from './Comprador/listar-menu/listar-menu.component';
 import { LoginComponent } from './Administrador/login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ListarPedidosComponent } from './Administrador/listar-pedidos/listar-pedidos.component'
+import { ListarPedidosComponent } from './Administrador/listar-pedidos/listar-pedidos.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,7 @@ import { ListarPedidosComponent } from './Administrador/listar-pedidos/listar-pe
     EditComponent,
     ListarMenuComponent,
     LoginComponent,
-    ListarPedidosComponent
+    ListarPedidosComponent,
   ],
   imports: [
     BrowserModule,

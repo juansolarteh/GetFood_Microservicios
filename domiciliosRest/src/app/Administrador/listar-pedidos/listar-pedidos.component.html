@@ -2,12 +2,12 @@
     <div class="card">
         <div class="card-header">
             <h3>Mis Pedidos</h3>
+            <button (click)="openModalHistorial(modalHistorial)" type="menu" class="btn btn-warning" >Pedidos realizados</button>
         </div>
         <div class="card-body">
             <br>
             <br>
             <table class="table table-hover">
-
                 <tbody>
                     <tr *ngFor = "let pedido of pedidos" class="text-center">
                         <td>
@@ -47,3 +47,55 @@
         </div>
     </div>
 </div>
+
+<ng-template #modalHistorial let-modal>
+    <div class="modal-header">
+        <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
+            <span  aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div>
+            <h3>Pedidos realizados</h3>
+            <table class="table table-hover">
+                <tbody>
+                    <tr *ngFor = "let pedido of historialPedidos" class="text-center">
+                        <td>
+                            <div class="Padre">
+                                <div class="Hijo">
+                                    <strong>Dirección:</strong>{{pedido.direccion_pedido}}
+                                    <br>
+                                    <strong>Telefono:</strong>{{pedido.telefono_pedido}}
+                                    <br>
+                                    <strong>Valor Total:</strong>{{pedido.valor_pedido}}
+                                </div>
+                            
+                            </div>
+                        </td>
+                        <td>
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th>Cantidad</th>
+                                        <th>Plato</th>
+                                        <th>Precio</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor = "let item of pedido.items" class="text-center">
+                                        <td>{{item.cantidad_producto}}X</td>
+                                        <td><strong>{{item.nombre_product}}</strong></td>         
+                                        <td>${{item.precio_item}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="modal.close()">Atras</button>   
+    </div>
+</ng-template>
