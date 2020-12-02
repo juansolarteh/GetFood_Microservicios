@@ -1,5 +1,9 @@
 package co.GetFood.Pedido.domain.entity;
 
+import co.GetFood.Pedido.domain.states.OpenState;
+import co.GetFood.Pedido.domain.states.OrderState;
+import co.GetFood.Pedido.domain.states.PayedState;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,9 +28,13 @@ import javax.persistence.Table;
 @Table(name = "pedidos")
 public class Pedido implements Serializable{
 	
-	/**
-	 * 
-	 */
+	private OrderState orderState;
+	private boolean paymentReceived;
+	
+	public void IniciarPedido() {
+		new OpenState(this);
+	}
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -55,8 +63,6 @@ public class Pedido implements Serializable{
 	@OneToMany(targetEntity = Item.class, cascade = CascadeType.ALL)
 	@JoinColumn(name="id_pedido", referencedColumnName = "id")
 	private List<Item> items = new ArrayList<Item>();
-
-	
 	
 	public long getId() {
 		return id;
@@ -122,5 +128,41 @@ public class Pedido implements Serializable{
 		this.items = ietms;
 	}
 	
+	public boolean isEmpty() {
+        return items.isEmpty();
+    }
+	
+	/**
+     * Just for visualizing in test/UI
+     *
+     * @return descripción de la orden
+     */
+    public String whatIsTheState() {
+        return orderState.getStateDescription();
+    }
+    
+    public boolean isPaymentReceived() {
+        return paymentReceived;
+    }
+
+    public void setPaymentReceived(boolean paymentReceived) {        
+        this.paymentReceived = paymentReceived;
+    }
+    
+    public void orderDelivered() {
+        orderState = orderState.orderDelivered();
+    }
+    
+    public void orderSendOut(String parcelNumber) {
+        orderState = orderState.orderSendOut(parcelNumber);
+    }
+
+    public boolean isFinished() {
+        return orderState.isFinished();
+    }
+    
+    public void orderedPayed(){
+        orderState = orderState.orderedPayed();
+    }
 	
 }

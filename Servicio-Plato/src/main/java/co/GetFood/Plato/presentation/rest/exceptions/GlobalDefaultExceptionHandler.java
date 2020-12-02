@@ -30,7 +30,6 @@ public class GlobalDefaultExceptionHandler {
 	@ResponseBody
 	public ResponseEntity<String> handleResourceNotFoundException(ResourceNotFoundException e) {
 		return new ResponseEntity<>("{\"errors\":[{\"code\":\"NOT_FOUND\"}]}", HttpStatus.NOT_FOUND);
-
 	}
 
 	/**

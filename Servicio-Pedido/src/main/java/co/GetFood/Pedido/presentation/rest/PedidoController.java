@@ -34,6 +34,7 @@ public class PedidoController {
 
 	@Autowired
 	private IPedidoService pedidoService;
+	private Pedido order;
 	
 	/**
 	 * Listar todos
@@ -71,6 +72,8 @@ public class PedidoController {
 	@RequestMapping(method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
 	public Pedido create(@RequestBody Pedido pedido) throws PedidoDomainException {
+		order.IniciarPedido();
+	    
 		return pedidoService.create(pedido);
 	}
 }
