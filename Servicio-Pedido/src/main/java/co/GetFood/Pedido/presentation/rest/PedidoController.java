@@ -73,7 +73,6 @@ public class PedidoController {
 	@ResponseBody
 	public Pedido create(@RequestBody Pedido pedido) throws PedidoDomainException {
 		order.IniciarPedido();
-	    
 		return pedidoService.create(pedido);
 	}
 }
