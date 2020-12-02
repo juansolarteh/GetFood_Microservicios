@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 import co.GetFood.Pedido.access.dao.IPedidoDao;
 import co.GetFood.Pedido.domain.entity.Item;
 import co.GetFood.Pedido.domain.entity.Pedido;
+import co.GetFood.Pedido.domain.states.OpenState;
+import co.GetFood.Pedido.domain.states.OrderState;
 import co.GetFood.Pedido.presentation.rest.exceptions.EnumErrorCodes;
 import co.GetFood.Pedido.presentation.rest.exceptions.PedidoDomainException;
 import co.GetFood.Pedido.presentation.rest.exceptions.PedidoError;
@@ -27,11 +29,11 @@ import co.GetFood.Pedido.presentation.rest.exceptions.ResourceNotFoundException;
 @Service
 public class PedidoImplService implements IPedidoService {
 	/**
-	 * Inyección de pedido Dao
+	 * Inyección de pedido Dao y orderState
 	 */
 	@Autowired
 	private IPedidoDao pedidoDao;
-	
+	private OrderState orderState;
 	
 	
 	/**
@@ -72,10 +74,9 @@ public class PedidoImplService implements IPedidoService {
 		if (!errors.isEmpty()) {
 			throw new PedidoDomainException(errors);
 		}
-
+		pedido.IniciarPedido();
 		return pedidoDao.save(pedido);
 	}
-	
 	
 	
 	/**
@@ -155,4 +156,28 @@ public class PedidoImplService implements IPedidoService {
 		}
 		return errors;
 	}
+	
+	public boolean isEmpty(Pedido order) {
+		return order.getItems().isEmpty();
+	}
+	
+	 public String whatIsTheState() {
+	        return orderState.getStateDescription();
+	 }
+	    
+	 public void orderDelivered() {
+       orderState = orderState.orderDelivered();
+     }
+	    
+	 public void orderSendOut(String parcelNumber) {
+	   orderState = orderState.orderSendOut(parcelNumber);
+	 }
+
+     public boolean isFinished() {
+	   return orderState.isFinished();
+	 }
+	    
+     public void orderedPayed(){
+	   orderState = orderState.orderedPayed();
+	 }
 }

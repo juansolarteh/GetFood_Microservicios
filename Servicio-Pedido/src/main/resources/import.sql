@@ -1,0 +1,1 @@
+INSERT INTO pedidos(id_restaurante, id_cliente, nombre_restaurante, direccion_pedido, telefono_pedido, valor_pedido) values(101,102,'brazas','Carrera 13',314565,10000);

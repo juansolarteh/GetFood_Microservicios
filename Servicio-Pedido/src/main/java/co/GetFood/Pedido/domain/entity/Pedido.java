@@ -17,6 +17,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Representa un pedido de un respectivo restaurante. Mapeado con la BD.
@@ -28,12 +31,8 @@ import javax.persistence.Table;
 @Table(name = "pedidos")
 public class Pedido implements Serializable{
 	
+	@Transient
 	private OrderState orderState;
-	private boolean paymentReceived;
-	
-	public void IniciarPedido() {
-		new OpenState(this);
-	}
 	
 	private static final long serialVersionUID = 1L;
 
@@ -60,6 +59,21 @@ public class Pedido implements Serializable{
 	@Column
 	private int valor_pedido;
 	
+	@Column
+	private String state;
+	
+	public String whatIsTheState() {
+	    return orderState.getStateDescription();
+	}
+	
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
 	@OneToMany(targetEntity = Item.class, cascade = CascadeType.ALL)
 	@JoinColumn(name="id_pedido", referencedColumnName = "id")
 	private List<Item> items = new ArrayList<Item>();
@@ -128,41 +142,28 @@ public class Pedido implements Serializable{
 		this.items = ietms;
 	}
 	
-	public boolean isEmpty() {
-        return items.isEmpty();
+	public boolean isEmpty(Pedido order) {
+		return order.getItems().isEmpty();
+	}
+	    
+	public void orderDelivered() {
+       orderState = orderState.orderDelivered();
     }
-	
-	/**
-     * Just for visualizing in test/UI
-     *
-     * @return descripción de la orden
-     */
-    public String whatIsTheState() {
-        return orderState.getStateDescription();
-    }
-    
-    public boolean isPaymentReceived() {
-        return paymentReceived;
-    }
-
-    public void setPaymentReceived(boolean paymentReceived) {        
-        this.paymentReceived = paymentReceived;
-    }
-    
-    public void orderDelivered() {
-        orderState = orderState.orderDelivered();
-    }
-    
-    public void orderSendOut(String parcelNumber) {
-        orderState = orderState.orderSendOut(parcelNumber);
-    }
+	    
+	public void orderSendOut(String parcelNumber) {
+	   orderState = orderState.orderSendOut(parcelNumber);
+	}
 
     public boolean isFinished() {
-        return orderState.isFinished();
-    }
-    
+	   return orderState.isFinished();
+	}
+	    
     public void orderedPayed(){
-        orderState = orderState.orderedPayed();
-    }
-	
+	   orderState = orderState.orderedPayed();
+	}
+		
+	public void IniciarPedido() {
+	  orderState = new OpenState(this);
+	  setState(orderState.getClass().getSimpleName());
+	}
 }
