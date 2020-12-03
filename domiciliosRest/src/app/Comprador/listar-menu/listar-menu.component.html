@@ -36,6 +36,7 @@
 
 <ng-template #modalAgregarPlato let-modal>
     <div class="modal-header">
+        <h3>Personaliza tu plato</h3>
         <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
             <span  aria-hidden="true">&times;</span>
         </button>
@@ -58,21 +59,14 @@
 
 <ng-template #modalCarrito let-modal>
     <div class="modal-header">
+        <h3>Mi Pedido</h3>
         <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
             <span  aria-hidden="true">&times;</span>
         </button>
     </div>
     <div class="modal-body">
         <div>
-            <h3>Mi pedido</h3>
             <table class="table table-hover">
-                <thead>
-                    <tr class="text-center">
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
                 <tbody>
                     <tr *ngFor = "let item of pedido.getItems()" class="text-center">
                         <td>{{item.getcantidad_producto()}}X</td>
@@ -90,7 +84,9 @@
 </ng-template>
 
 <ng-template #modalDirTel let-modal>
+    
     <div class="modal-header">
+        <h3>Datos Personales</h3>
         <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
             <span  aria-hidden="true">&times;</span>
         </button>
@@ -108,6 +104,29 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-danger" (click)="finalizarPedido()">Enviar pedido</button>   
+        <button type="button" class="btn btn-danger" (click)="openModalMedioPago(modalMedioPago)">Siguiente</button>   
     </div>
+</ng-template>
+<ng-template #modalMedioPago let-modal>
+    <div class="modal-header">
+        <h3>Medio de Pago</h3>
+        <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
+            <span  aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <label style="font-weight: bold;">Seleccione el medio de pago:</label>
+        <div>
+            <input type="checkbox" name="rad2" [checked]="value === 'Electronico'" (click)="value = 'Electronico'"> Pago Electronico
+            <br>
+            <input type="checkbox" name="rad3" [checked]="value === 'Contraentrega'" (click)="value = 'Contraentrega'"> Pago Contraentrega
+        </div>
+          <div *ngIf="value === 'Electronico' || value === 'Contraentrega'">
+            <div class="modal-footer">
+                <button id='btnFinalizar' type="button" class="btn btn-danger" (click)="finalizarPedido()">Finalizar</button> 
+            </div>
+          </div>   
+          
+    </div>
+    
 </ng-template>

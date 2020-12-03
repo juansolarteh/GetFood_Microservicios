@@ -88,7 +88,7 @@ export class ListarMenuComponent implements OnInit {
     },
     response => {
       if(this.bandera == false){
-        this.errores = response.error.errors       
+        this.errores = response.error.errors   
         } 
       })  
   }
@@ -113,4 +113,9 @@ export class ListarMenuComponent implements OnInit {
         return error.message;
     return "";
   }
+  openModalMedioPago(modalMedioPago){
+    this.modal.dismissAll()
+    this.modal.open(modalMedioPago,{size:'m', centered:true})
+  }
+
 }
