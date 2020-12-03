@@ -7,6 +7,9 @@ import co.GetFood.Pedido.domain.states.SendNotPayState;
 import co.GetFood.Pedido.domain.states.SendState;
 
 import java.io.Serializable;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +26,7 @@ import javax.persistence.Transient;
 
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 
 import com.sun.tools.javac.Main;
 
@@ -65,17 +69,17 @@ public class Pedido implements Serializable{
 	@Column
 	private String state;
 	
+	
 	public String whatIsTheState() {
 	    return orderState.getStateDescription();
 	}
 	
-	public void adjustOrderState() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
-		switch (state) {
-			case "PayedState": orderState = new PayedState(this); break;
-			case "NotPayedState": orderState = new NotPayedState(this); break; 
-			case "SendState": orderState = new SendState(this); break;
-			case "SendNotPayState": orderState = new SendNotPayState(this); break; 
-		}
+	public void adjustOrderState() throws ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+
+		Constructor<?> cons = Class.forName("co.GetFood.Pedido.domain.states."+state).getDeclaredConstructor(this.getClass());
+		cons.setAccessible(true);
+		orderState = (OrderState) cons.newInstance(new Object[] {this});
+		
 	}
 	
 	public String getState() {
@@ -164,7 +168,7 @@ public class Pedido implements Serializable{
     }
 	    
 	public void orderNotPaySendOut() {
-		   orderState = orderState.orderNotPaySendOut();
+		   orderState = orderState.orderSendOut();
 		   setState(orderState.getClass().getSimpleName());
 	}
 	

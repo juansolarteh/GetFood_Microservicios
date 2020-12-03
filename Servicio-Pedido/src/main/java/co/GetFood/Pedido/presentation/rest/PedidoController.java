@@ -1,6 +1,7 @@
 package co.GetFood.Pedido.presentation.rest;
 
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,13 +77,13 @@ public class PedidoController {
 	
 	@RequestMapping(value = "send/{id_pedido}", method = RequestMethod.PUT, produces = "application/json")
 	@ResponseBody
-	public Pedido updateSend(@PathVariable Long id_pedido) throws ResourceNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+	public Pedido updateSend(@PathVariable Long id_pedido) throws ResourceNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
 		return pedidoService.SendOrder(id_pedido);
 	}
 	
 	@RequestMapping(value = "delivery/{id_pedido}", method = RequestMethod.PUT, produces = "application/json")
 	@ResponseBody
-	public Pedido updateDelivery(@PathVariable Long id_pedido) throws ResourceNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+	public Pedido updateDelivery(@PathVariable Long id_pedido) throws ResourceNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
 		return pedidoService.DeliveryOrder(id_pedido);
 	}
 }

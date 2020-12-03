@@ -1,5 +1,6 @@
 package co.GetFood.Pedido.domain.service;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -86,7 +87,7 @@ public class PedidoImplService implements IPedidoService {
 	}
 	
 	@Override
-	public Pedido SendOrder(Long idPedido) throws ResourceNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+	public Pedido SendOrder(Long idPedido) throws ResourceNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
 		Pedido pedido = findById(idPedido);
 		pedido.adjustOrderState();
 		pedido.orderSendOut();
@@ -94,7 +95,7 @@ public class PedidoImplService implements IPedidoService {
 	}
 	
 	@Override
-	public Pedido DeliveryOrder(Long idPedido) throws ResourceNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException{
+	public Pedido DeliveryOrder(Long idPedido) throws ResourceNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException{
 		Pedido pedido = findById(idPedido);
 		pedido.adjustOrderState();
 		pedido.orderDelivery();

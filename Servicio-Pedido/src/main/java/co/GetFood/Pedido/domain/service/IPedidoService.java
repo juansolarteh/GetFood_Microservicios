@@ -1,5 +1,6 @@
 package co.GetFood.Pedido.domain.service;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import co.GetFood.Pedido.domain.entity.Pedido;
@@ -21,7 +22,7 @@ public interface IPedidoService {
 
 	public Pedido create(Pedido pedido) throws PedidoDomainException;
 	
-	public Pedido SendOrder(Long idPedido) throws ResourceNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException ;
+	public Pedido SendOrder(Long idPedido) throws ResourceNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException ;
 
-	public Pedido DeliveryOrder(Long idPedido) throws ResourceNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException;		
+	public Pedido DeliveryOrder(Long idPedido) throws ResourceNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException;		
 }
