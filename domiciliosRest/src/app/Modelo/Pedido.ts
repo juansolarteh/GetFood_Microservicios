@@ -8,6 +8,7 @@ export class Pedido{
     direccion_pedido:string
     valor_pedido:number = 0
     items:Item[]
+    state:string
 
     constructor(idRest:number, nombreRestaurante:string){
         this.id_restaurante = idRest
@@ -28,6 +29,9 @@ export class Pedido{
 
     setTelefono(telefono:number){
         this.telefono_pedido = telefono
+    }
+    setState(state:string){
+        this.state=state
     }
 
     getValorPedido():number{
@@ -56,7 +60,6 @@ export class Pedido{
             this.valor_pedido -= numberAux    
         }
     }
-
     getNumberItems():number{
         return this.items.length;
     }

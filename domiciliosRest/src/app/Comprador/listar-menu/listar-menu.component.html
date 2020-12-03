@@ -117,9 +117,9 @@
     <div class="modal-body">
         <label style="font-weight: bold;">Seleccione el medio de pago:</label>
         <div>
-            <input type="checkbox" name="rad2" [checked]="value === 'Electronico'" (click)="value = 'Electronico'"> Pago Electronico
+            <input type="checkbox" id="cbElect" [checked]="value === 'Electronico'" (click)="value = 'Electronico'"> Pago Electronico
             <br>
-            <input type="checkbox" name="rad3" [checked]="value === 'Contraentrega'" (click)="value = 'Contraentrega'"> Pago Contraentrega
+            <input type="checkbox" id="cbCont" [checked]="value === 'Contraentrega'" (click)="value = 'Contraentrega'"> Pago Contraentrega
         </div>
           <div *ngIf="value === 'Electronico' || value === 'Contraentrega'">
             <div class="modal-footer">

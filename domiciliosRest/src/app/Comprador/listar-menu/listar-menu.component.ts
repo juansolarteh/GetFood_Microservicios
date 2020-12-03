@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 import { Pedido } from 'src/app/Modelo/Pedido';
 import { Item } from 'src/app/Modelo/Item';
 import { Error } from 'src/app/Modelo/Error';
+import { timeStamp } from 'console';
 
 @Component({
   selector: 'app-listar-menu',
@@ -75,6 +76,14 @@ export class ListarMenuComponent implements OnInit {
   } 
 
   finalizarPedido(){
+    let cboxElect = document.getElementById("cbElect") as HTMLInputElement
+    let cboxCont = document.getElementById("cbCont") as HTMLInputElement
+    if (cboxElect.checked){
+      this.pedido.state="Pedido Pago"
+    }else if(cboxCont.checked){
+      this.pedido.state=""
+    }
+    console.log(this.pedido)
     this.service.createPedido(this.pedido)
     .subscribe(data => {
       if(data != undefined && data != null){;
@@ -88,7 +97,8 @@ export class ListarMenuComponent implements OnInit {
     },
     response => {
       if(this.bandera == false){
-        this.errores = response.error.errors   
+        this.errores = response.error.errors 
+        alert("Algo pasa")  
         } 
       })  
   }
