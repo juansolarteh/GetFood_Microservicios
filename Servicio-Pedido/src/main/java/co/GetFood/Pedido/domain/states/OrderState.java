@@ -21,23 +21,17 @@ public abstract class OrderState {
     
 	public abstract String getStateDescription();
 	
-	public OrderState openOrder() {
-		throw new IllegalStateException("No se puede abrir la orden cuando la orden está  " + getStateDescription());	    
-	}
-
-    public OrderState orderedPayed(){
-        throw new IllegalStateException("No se puede pagar la orden cuando la orden está " + getStateDescription());
-    }
-
-    public OrderState orderSendOut(String parcelNumber) {
-        throw new IllegalStateException("No se puede enviar la orden cuando la orden está " + getStateDescription());
+	 
+	
+    public OrderState orderSendOut() {
+        throw new IllegalStateException("No se puede enviar la orden cuando la orden está en fase " + getStateDescription());
     }
 
     public OrderState orderDelivered() {
-        throw new IllegalStateException("No se puede ordenar una orden cuando la orden está " + getStateDescription());
+        throw new IllegalStateException("No se puede entregar una orden cuando la orden está en fase " + getStateDescription());
     }
     
-    public boolean isFinished() {
-        return false;
+    public void PublicFinishedOrder() {
+    	throw new IllegalStateException("No se puede publicar una orden finalizada cuando la orden está en fase " + getStateDescription());
     }
 }

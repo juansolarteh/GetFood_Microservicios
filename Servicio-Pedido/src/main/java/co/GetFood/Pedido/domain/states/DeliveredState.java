@@ -12,11 +12,10 @@ public class DeliveredState extends OrderState {
 	public String getStateDescription() {
 		return "Finalizada";
 	}
-
-	/**
-     * @return true por orden finalizada
-     */
-    public boolean isFinished() {
-        return true;
+    
+    @Override
+    public void PublicFinishedOrder() {
+        //logica de publicación a cola de eventos. despues de esto
+    	//desde el servicio se debe eliminar este pedido
     }
 }

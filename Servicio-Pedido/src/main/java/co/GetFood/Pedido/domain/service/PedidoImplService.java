@@ -11,8 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import co.GetFood.Pedido.access.dao.IPedidoDao;
 import co.GetFood.Pedido.domain.entity.Item;
 import co.GetFood.Pedido.domain.entity.Pedido;
-import co.GetFood.Pedido.domain.states.OpenState;
-import co.GetFood.Pedido.domain.states.OrderState;
 import co.GetFood.Pedido.presentation.rest.exceptions.EnumErrorCodes;
 import co.GetFood.Pedido.presentation.rest.exceptions.PedidoDomainException;
 import co.GetFood.Pedido.presentation.rest.exceptions.PedidoError;
@@ -33,8 +31,15 @@ public class PedidoImplService implements IPedidoService {
 	 */
 	@Autowired
 	private IPedidoDao pedidoDao;
-	private OrderState orderState;
 	
+	public Pedido findById(Long idPedido) throws ResourceNotFoundException {
+		Pedido pedido = pedidoDao.findById(idPedido).orElse(null);
+		if (pedido == null) {
+			throw new ResourceNotFoundException();
+
+		}
+		return pedido;
+	}
 	
 	/**
 	 * Servicio para buscar todos los pedidos
@@ -71,14 +76,30 @@ public class PedidoImplService implements IPedidoService {
 	@Transactional
 	public Pedido create(Pedido pedido) throws PedidoDomainException{
 		List<PedidoError> errors = validateDomain(pedido);
-		if (!errors.isEmpty()) {
+		if (!errors.isEmpty()) 
 			throw new PedidoDomainException(errors);
-		}
-		pedido.IniciarPedido();
+		if(pedido.getState() == null || pedido.getState().isBlank() || pedido.getState().isEmpty()) 
+			pedido.IniciarPedidoNoPago();
+		else 
+			pedido.IniciarPedidoPago();
 		return pedidoDao.save(pedido);
 	}
 	
+	@Override
+	public Pedido SendOrder(Long idPedido) throws ResourceNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+		Pedido pedido = findById(idPedido);
+		pedido.adjustOrderState();
+		pedido.orderSendOut();
+		return pedidoDao.save(pedido);
+	}
 	
+	@Override
+	public Pedido DeliveryOrder(Long idPedido) throws ResourceNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException{
+		Pedido pedido = findById(idPedido);
+		pedido.adjustOrderState();
+		pedido.orderDelivery();
+		return pedidoDao.save(pedido);
+	}
 	/**
 	 * Aplica validaciones o reglas del dominio para un pedido. Antes de ser
 	 * agregado o modificado.
@@ -156,28 +177,4 @@ public class PedidoImplService implements IPedidoService {
 		}
 		return errors;
 	}
-	
-	public boolean isEmpty(Pedido order) {
-		return order.getItems().isEmpty();
-	}
-	
-	 public String whatIsTheState() {
-	        return orderState.getStateDescription();
-	 }
-	    
-	 public void orderDelivered() {
-       orderState = orderState.orderDelivered();
-     }
-	    
-	 public void orderSendOut(String parcelNumber) {
-	   orderState = orderState.orderSendOut(parcelNumber);
-	 }
-
-     public boolean isFinished() {
-	   return orderState.isFinished();
-	 }
-	    
-     public void orderedPayed(){
-	   orderState = orderState.orderedPayed();
-	 }
 }

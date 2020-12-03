@@ -25,7 +25,7 @@ public class PayedState extends OrderState{
      * @return 
      */
     @Override
-    public OrderState orderSendOut(String parcelNumber) {
+    public OrderState orderSendOut() {
         return new SendState(getOrder());
     }
 }

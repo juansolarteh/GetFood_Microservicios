@@ -73,4 +73,16 @@ public class PedidoController {
 	public Pedido create(@RequestBody Pedido pedido) throws PedidoDomainException {	
 		return pedidoService.create(pedido);
 	}
+	
+	@RequestMapping(value = "send/{id_pedido}", method = RequestMethod.PUT, produces = "application/json")
+	@ResponseBody
+	public Pedido updateSend(@PathVariable Long id_pedido) throws ResourceNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+		return pedidoService.SendOrder(id_pedido);
+	}
+	
+	@RequestMapping(value = "delivery/{id_pedido}", method = RequestMethod.PUT, produces = "application/json")
+	@ResponseBody
+	public Pedido updateDelivery(@PathVariable Long id_pedido) throws ResourceNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+		return pedidoService.DeliveryOrder(id_pedido);
+	}
 }

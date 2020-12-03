@@ -20,4 +20,8 @@ public interface IPedidoService {
 	public List<Pedido> findByIdRest(Long idRest) throws ResourceNotFoundException;
 
 	public Pedido create(Pedido pedido) throws PedidoDomainException;
+	
+	public Pedido SendOrder(Long idPedido) throws ResourceNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException ;
+
+	public Pedido DeliveryOrder(Long idPedido) throws ResourceNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException;		
 }

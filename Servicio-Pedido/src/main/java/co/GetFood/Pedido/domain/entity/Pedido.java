@@ -1,8 +1,10 @@
 package co.GetFood.Pedido.domain.entity;
 
-import co.GetFood.Pedido.domain.states.OpenState;
+import co.GetFood.Pedido.domain.states.NotPayedState;
 import co.GetFood.Pedido.domain.states.OrderState;
 import co.GetFood.Pedido.domain.states.PayedState;
+import co.GetFood.Pedido.domain.states.SendNotPayState;
+import co.GetFood.Pedido.domain.states.SendState;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -19,7 +21,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.sun.tools.javac.Main;
 
 /**
  * Representa un pedido de un respectivo restaurante. Mapeado con la BD.
@@ -33,8 +38,6 @@ public class Pedido implements Serializable{
 	
 	@Transient
 	private OrderState orderState;
-	
-	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column
@@ -64,6 +67,15 @@ public class Pedido implements Serializable{
 	
 	public String whatIsTheState() {
 	    return orderState.getStateDescription();
+	}
+	
+	public void adjustOrderState() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+		switch (state) {
+			case "PayedState": orderState = new PayedState(this); break;
+			case "NotPayedState": orderState = new NotPayedState(this); break; 
+			case "SendState": orderState = new SendState(this); break;
+			case "SendNotPayState": orderState = new SendNotPayState(this); break; 
+		}
 	}
 	
 	public String getState() {
@@ -146,24 +158,32 @@ public class Pedido implements Serializable{
 		return order.getItems().isEmpty();
 	}
 	    
-	public void orderDelivered() {
+	public void orderDelivery() {
        orderState = orderState.orderDelivered();
+       setState(orderState.getClass().getSimpleName());
     }
 	    
-	public void orderSendOut(String parcelNumber) {
-	   orderState = orderState.orderSendOut(parcelNumber);
+	public void orderNotPaySendOut() {
+		   orderState = orderState.orderNotPaySendOut();
+		   setState(orderState.getClass().getSimpleName());
+	}
+	
+	public void orderSendOut() {
+	   orderState = orderState.orderSendOut();
+	   setState(orderState.getClass().getSimpleName());
 	}
 
-    public boolean isFinished() {
-	   return orderState.isFinished();
-	}
-	    
-    public void orderedPayed(){
-	   orderState = orderState.orderedPayed();
-	}
+//    public boolean isFinished() {
+//	   return orderState.isFinished();
+//	}
 		
-	public void IniciarPedido() {
-	  orderState = new OpenState(this);
+	public void IniciarPedidoNoPago() {
+	  orderState = new NotPayedState(this);
 	  setState(orderState.getClass().getSimpleName());
+	}
+	
+	public void IniciarPedidoPago() {
+		  orderState = new PayedState(this);
+		  setState(orderState.getClass().getSimpleName());
 	}
 }
