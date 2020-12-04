@@ -47,6 +47,14 @@ public class PedidoController {
 		return pedidoService.findAll();
 	}
 	
+	@RequestMapping(value = "sent", method = RequestMethod.GET, produces = "application/json")
+	@ResponseBody
+	public List<Pedido> findAllStateSent() throws Exception {
+		List<Pedido> lst = pedidoService.findByState("SendNotPayState");
+		lst.addAll(pedidoService.findByState("SendState"));
+		return lst;
+	}
+	
 	
 	/**
 	 * listar pedidos por restaurante.
@@ -81,9 +89,9 @@ public class PedidoController {
 		return pedidoService.SendOrder(id_pedido);
 	}
 	
-	@RequestMapping(value = "delivery/{id_pedido}", method = RequestMethod.PUT, produces = "application/json")
+	@RequestMapping(value = "deliver/{id_pedido}", method = RequestMethod.DELETE, produces = "application/json")
 	@ResponseBody
-	public boolean updateDelivery(@PathVariable Long id_pedido) throws Exception {
-		return pedidoService.deliverOrder(id_pedido);
+	public void updateDelivery(@PathVariable Long id_pedido) throws Exception {
+		pedidoService.deliverOrder(id_pedido);
 	}
 }

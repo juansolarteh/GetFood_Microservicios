@@ -15,6 +15,7 @@ import { ListarMenuComponent } from './Comprador/listar-menu/listar-menu.compone
 import { LoginComponent } from './Administrador/login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ListarPedidosComponent } from './Administrador/listar-pedidos/listar-pedidos.component';
+import { PedidoActivoComponent } from './Domiciliario/pedido-activo/pedido-activo.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ListarPedidosComponent } from './Administrador/listar-pedidos/listar-pe
     ListarMenuComponent,
     LoginComponent,
     ListarPedidosComponent,
+    PedidoActivoComponent,
   ],
   imports: [
     BrowserModule,

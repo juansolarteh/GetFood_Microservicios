@@ -25,5 +25,8 @@ public interface IPedidoDao extends CrudRepository<Pedido, Long> {
 	 */
 	@Query("select c from Pedido c where c.id_restaurante = ?1")
 	List<Pedido> findByIdRest(Long idRest);
+	
+	@Query("select c from Pedido c where c.state = ?1")
+	List<Pedido> findByState(String prmState);
 
 }

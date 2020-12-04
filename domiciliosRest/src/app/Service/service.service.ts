@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Plato } from '../Modelo/Plato';
 import { Restaurante } from '../Modelo/Restaurante';
 import { Pedido } from '../Modelo/Pedido';
@@ -61,5 +61,13 @@ export class ServiceService {
 
   createPedido(pedido:Pedido){
     return this.http.post<Pedido>(this.UrlPedidos,pedido)
+  }
+
+  getSentOrder(){
+    return this.http.get<Pedido[]>(this.UrlPedidos+"/sent")
+  }
+
+  deliverOrder(pedido:Pedido){
+    return this.http.delete<Pedido>(this.UrlPedidos+"/deliver/"+pedido.id)
   }
 }

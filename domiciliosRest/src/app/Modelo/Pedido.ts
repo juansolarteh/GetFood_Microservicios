@@ -1,6 +1,7 @@
 import { Item } from './Item'
 
 export class Pedido{
+    id:number
     private id_restaurante:number
     private nombre_restaurante:string
     private id_cliente:number=99901

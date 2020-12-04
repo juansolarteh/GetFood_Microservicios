@@ -1,0 +1,55 @@
+<div class="container" style="margin-top: 10px;">
+    <div class="card">
+        <div class="card header">
+            <h3>Pedidos activos</h3>
+        </div>
+        <div class="card-body">   
+            <div *ngIf = "hayPedidos(); else sinPedidos">
+                <table class="table table-hover">
+                    <tbody>
+                        <tr *ngFor = "let pedido of pedidos" class="text-center">
+                            <td>
+                                <div class="Padre">
+                                    <div class="Hijo">
+                                        <strong>Dirección:</strong>{{pedido.direccion_pedido}}
+                                        <br>
+                                        <strong>Telefono:</strong>{{pedido.telefono_pedido}}
+                                        <br>
+                                        <strong>Valor Total:</strong>{{pedido.valor_pedido}}
+                                        <br>
+                                        <strong>Tipo Pago:</strong>{{tipoPago(pedido)}}
+                                    </div>
+                                
+                                </div>
+                            </td>
+                            <td>
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th>Cantidad</th>
+                                            <th>Plato</th>
+                                            <th>Precio</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor = "let item of pedido.items" class="text-center">
+                                            <td>{{item.cantidad_producto}}X</td>
+                                            <td><strong>{{item.nombre_product}}</strong></td>         
+                                            <td>${{item.precio_item}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td>
+                                <button (click) = "entregarPedido(pedido)" class="btn btn-warning">Entregado</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <ng-template #sinPedidos>
+                <label>Sin pedidos pendientes</label>   
+            </ng-template>
+        </div>
+    </div>
+</div>

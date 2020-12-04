@@ -25,6 +25,9 @@ export class AppComponent implements OnInit{
   login(){
     this.router.navigate(['login'])
   }
+  irDomiciliario(){
+    this.router.navigate(['listaPedidosDomiciliario'])
+  }
   listarPedidos(){
     this.router.navigate(['listarPedidos'])
   }

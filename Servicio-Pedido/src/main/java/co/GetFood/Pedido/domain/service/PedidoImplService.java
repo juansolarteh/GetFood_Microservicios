@@ -43,6 +43,15 @@ public class PedidoImplService implements IPedidoService {
 		return pedido;
 	}
 	
+	@Override
+	public List<Pedido> findByState(String state) throws Exception {
+		try {
+			return pedidoDao.findByState(state);
+		} catch (Exception e) {
+			throw new Exception(e.getMessage(), e.getCause());
+		}
+	}
+	
 	/**
 	 * Servicio para buscar todos los pedidos
 	 * 
@@ -96,13 +105,12 @@ public class PedidoImplService implements IPedidoService {
 	}
 	
 	@Override
-	public boolean deliverOrder(Long idPedido) throws Exception{
+	public void deliverOrder(Long idPedido) throws Exception{
 		try {
 			Pedido pedido = findById(idPedido);
 			pedido.adjustOrderState();
 			pedido.deliverOrder();
 			pedidoDao.deleteById(idPedido);
-			return true;
 		} catch (Exception e) {
 			throw new Exception(e.getMessage(), e.getCause());
 		}

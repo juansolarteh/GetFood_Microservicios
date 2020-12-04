@@ -8,6 +8,7 @@ import { ListarMenuComponent } from './Comprador/listar-menu/listar-menu.compone
 import { AppComponent } from './app.component';
 import { LoginComponent } from './Administrador/login/login.component';
 import { ListarPedidosComponent } from './Administrador/listar-pedidos/listar-pedidos.component';
+import { PedidoActivoComponent } from './Domiciliario/pedido-activo/pedido-activo.component';
 
 const routes: Routes = [
   {path:'listar', component:ListarComponent},
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path:'listarMenu', component:ListarMenuComponent},
   {path:'login',component:LoginComponent},
   {path:'listarPedidos',component:ListarPedidosComponent},
+  {path:'listaPedidosDomiciliario',component:PedidoActivoComponent}
 ];
 
 @NgModule({
