@@ -24,5 +24,5 @@ public interface IPedidoService {
 	
 	public Pedido SendOrder(Long idPedido) throws ResourceNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException ;
 
-	public Pedido DeliveryOrder(Long idPedido) throws ResourceNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException;		
+	public boolean deliverOrder(Long idPedido) throws ResourceNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException, Exception;		
 }

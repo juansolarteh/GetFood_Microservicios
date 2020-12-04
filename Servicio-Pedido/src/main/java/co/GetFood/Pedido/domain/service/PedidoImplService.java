@@ -4,6 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.message.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -95,11 +96,17 @@ public class PedidoImplService implements IPedidoService {
 	}
 	
 	@Override
-	public Pedido DeliveryOrder(Long idPedido) throws ResourceNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException{
-		Pedido pedido = findById(idPedido);
-		pedido.adjustOrderState();
-		pedido.orderDelivery();
-		return pedidoDao.save(pedido);
+	public boolean deliverOrder(Long idPedido) throws Exception{
+		try {
+			Pedido pedido = findById(idPedido);
+			pedido.adjustOrderState();
+			pedido.deliverOrder();
+			pedidoDao.deleteById(idPedido);
+			return true;
+		} catch (Exception e) {
+			throw new Exception(e.getMessage(), e.getCause());
+		}
+		
 	}
 	/**
 	 * Aplica validaciones o reglas del dominio para un pedido. Antes de ser

@@ -162,7 +162,7 @@ public class Pedido implements Serializable{
 		return order.getItems().isEmpty();
 	}
 	    
-	public void orderDelivery() {
+	public void deliverOrder() {
        orderState = orderState.orderDelivered();
        setState(orderState.getClass().getSimpleName());
     }
@@ -177,10 +177,6 @@ public class Pedido implements Serializable{
 	   setState(orderState.getClass().getSimpleName());
 	}
 
-//    public boolean isFinished() {
-//	   return orderState.isFinished();
-//	}
-		
 	public void IniciarPedidoNoPago() {
 	  orderState = new NotPayedState(this);
 	  setState(orderState.getClass().getSimpleName());

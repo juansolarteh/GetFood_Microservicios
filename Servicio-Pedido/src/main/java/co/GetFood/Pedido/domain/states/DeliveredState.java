@@ -16,6 +16,5 @@ public class DeliveredState extends OrderState {
     @Override
     public void PublicFinishedOrder() {
         //logica de publicación a cola de eventos. despues de esto
-    	//desde el servicio se debe eliminar este pedido
     }
 }
