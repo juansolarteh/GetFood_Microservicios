@@ -18,9 +18,10 @@
                                     <strong>Telefono:</strong>{{pedido.telefono_pedido}}
                                     <br>
                                     <strong>Valor Total:</strong>{{pedido.valor_pedido}}
+                                    <br>
                                 </div>
-                            
                             </div>
+
                         </td>
                         <td>
                             <table class="table table-hover">
@@ -39,11 +40,12 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            <button (click) = "Despachar(pedido)"class= "btn btn-warning" style="text-align: center; margin-left: 10%;">Despachar</button>
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <button (click) = "Atras()" class="btn btn-warning" style="margin-bottom: 10px;">Atras</button>
+            <button (click) = "Atras()" class="btn btn-danger" style="margin-bottom: 10px;">Atras</button>
         </div>
     </div>
 </div>

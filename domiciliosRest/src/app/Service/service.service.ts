@@ -70,4 +70,7 @@ export class ServiceService {
   deliverOrder(pedido:Pedido){
     return this.http.delete<Pedido>(this.UrlPedidos+"/deliver/"+pedido.id)
   }
+  sendOrder(pedido:Pedido){
+    return this.http.put<Pedido>(this.UrlPedidos+"/send/"+pedido.id,pedido)
+  }
 }

@@ -47,11 +47,17 @@ export class ListarPedidosComponent implements OnInit {
   }
 
   getHistorial(){
-    //Aqui deberia ir toda la logica de publicador de evento para traer los pedidos con nit(this.restNit)
+    //Aqui deberia ir toda la logica de suscriptor de evento para traer los pedidos con nit(this.restNit)
     this.historialPedidos = new Array
     this.historialPedidos.push(new Pedido(12,"aa"))
     this.historialPedidos[0].addItem(new Item(1,"bb",3,434))
     this.historialPedidos[0].setDireccion("cara")
     this.historialPedidos[0].setTelefono(12345)
+  }
+  Despachar(pedido){
+    this.service.sendOrder(pedido.id)
+    alert("Pedido con valor"+pedido.valor_pedido+"despachado")
+    alert(pedido.state)
+    //Logica de publicador de evento para encolar los pedidos despachados
   }
 }
