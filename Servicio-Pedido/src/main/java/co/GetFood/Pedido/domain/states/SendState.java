@@ -1,5 +1,9 @@
 package co.GetFood.Pedido.domain.states;
 
+import java.io.IOException;
+import java.util.concurrent.TimeoutException;
+
+import co.GetFood.Pedido.RabbitMQ.OrderPublisher;
 import co.GetFood.Pedido.domain.entity.Pedido;
 
 public class SendState extends OrderState{
@@ -14,7 +18,9 @@ public class SendState extends OrderState{
 	}
 
 	@Override
-    public OrderState orderDelivered() {
+    public OrderState orderDelivered() throws IOException, TimeoutException {
+		OrderPublisher op = new OrderPublisher();
+		op.publicar(getOrder());
         return new DeliveredState(getOrder());
     }
 }

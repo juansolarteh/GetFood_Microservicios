@@ -13,8 +13,4 @@ public class DeliveredState extends OrderState {
 		return "Finalizada";
 	}
     
-    @Override
-    public void PublicFinishedOrder() {
-        //logica de publicación a cola de eventos. despues de esto
-    }
 }

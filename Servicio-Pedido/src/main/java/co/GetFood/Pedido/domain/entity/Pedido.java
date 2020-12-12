@@ -6,12 +6,14 @@ import co.GetFood.Pedido.domain.states.PayedState;
 import co.GetFood.Pedido.domain.states.SendNotPayState;
 import co.GetFood.Pedido.domain.states.SendState;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeoutException;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -29,7 +31,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 
 import com.sun.tools.javac.Main;
-
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 /**
  * Representa un pedido de un respectivo restaurante. Mapeado con la BD.
  * 
@@ -162,7 +165,7 @@ public class Pedido implements Serializable{
 		return order.getItems().isEmpty();
 	}
 	    
-	public void deliverOrder() {
+	public void deliverOrder() throws IOException, TimeoutException {
        orderState = orderState.orderDelivered();
        setState(orderState.getClass().getSimpleName());
     }
@@ -186,4 +189,18 @@ public class Pedido implements Serializable{
 		  orderState = new PayedState(this);
 		  setState(orderState.getClass().getSimpleName());
 	}
+	/*
+	public JsonObject toJson() {
+		JsonObject pedidoJson = new JsonObject();
+		JsonArray itemJson = new JsonArray();
+		pedidoJson.addProperty("id", id);
+		pedidoJson.addProperty("id_restaurante", id_restaurante);
+		pedidoJson.addProperty("id_cliente", id_cliente);
+		pedidoJson.addProperty("direccion_pedido", direccion_pedido);
+		pedidoJson.addProperty("nombre_restaurante", nombre_restaurante);
+		pedidoJson.addProperty("telefono_pedido", telefono_pedido);
+		pedidoJson.addProperty("valor_pedido", valor_pedido);
+		itemJson.add(items);
+	}*/
+	
 }
