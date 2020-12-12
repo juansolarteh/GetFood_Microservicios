@@ -97,7 +97,8 @@ public class PedidoImplService implements IPedidoService {
 	}
 	
 	@Override
-	public Pedido SendOrder(Long idPedido, Pedido pedido) throws ResourceNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+	public Pedido SendOrder(Long idPedido) throws ResourceNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+		Pedido pedido = findById(idPedido);
 		pedido.adjustOrderState();
 		pedido.orderSendOut();
 		return pedidoDao.save(pedido);

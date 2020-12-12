@@ -1,2 +1,0 @@
-#INSERT INTO item(idItem,id_producto, nombre_product, cantidad_producto, precio_producto, precio_item) values(01,02,'pasta',2,12500,25000);
-#INSERT INTO hispedidos(id,id_restaurante, id_cliente, nombre_restaurante, direccion_pedido, telefono_pedido, valor_pedido, items) values(06,101,102,'brazas','Carrera 13',314565,10000,01);

@@ -20,6 +20,8 @@ public class OrderPublisher {
 	 */
 	private final String QUEUE_NAME = "HisPedido_Queue";
 	private final String PATH_PEDIDO = "localhost";
+	private final String userName = "GetFood";
+	private final String password = "GetFood";
 	
 	/**
 	 * Logica de publicación a la cola de HisPedidos
@@ -30,6 +32,8 @@ public class OrderPublisher {
 	private void publicarEnCola(String message) throws IOException, TimeoutException  {
 		ConnectionFactory factory = new ConnectionFactory();
         factory.setHost(PATH_PEDIDO);
+        factory.setUsername(userName);
+        factory.setPassword(password);;
         try (Connection connection = factory.newConnection();
             Channel channel = connection.createChannel()) {
             	channel.queueDeclare(QUEUE_NAME, true, false, false, null);

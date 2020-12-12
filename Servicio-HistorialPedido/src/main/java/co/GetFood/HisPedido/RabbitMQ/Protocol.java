@@ -1,8 +1,8 @@
 package co.GetFood.HisPedido.RabbitMQ;
 
 public class Protocol {
-	public String action;
-	public String message;
+	private String action;
+	private String message;
 	
 	public Protocol(String action, String message) {
 		this.action=action;

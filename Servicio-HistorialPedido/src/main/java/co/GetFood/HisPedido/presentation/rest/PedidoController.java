@@ -22,12 +22,10 @@ import co.GetFood.HisPedido.presentation.rest.exceptions.ResourceNotFoundExcepti
  * @author Juan Pablo Solarte, Jorge Ivan Solano, Jefferson Campo
  *
  */
-@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
-@RestController
-@RequestMapping("hispedidos")
+
 public class PedidoController {
 	
-	@Autowired
+	
 	private IPedidoService pedidoService;
 
 	/**
