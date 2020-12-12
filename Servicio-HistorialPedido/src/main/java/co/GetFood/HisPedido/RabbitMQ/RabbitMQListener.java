@@ -9,7 +9,11 @@ public class RabbitMQListener implements MessageListener{
 	@Override
 	public void onMessage(Message message) {
 		Gson gson = new Gson();
-		System.out.println("[CONSUMIDOR] accion: " + gson.fromJson(message.getBody().toString(), Protocol.class).getAction());
-		System.out.println("[CONSUMIDOR] mensaje: " + gson.fromJson(message.getBody().toString(), Protocol.class).getMessage());
+		Protocol proto = gson.fromJson(new String (message.getBody()),Protocol.class);
+		/*
+		 * System.out.println("[CONSUMIDOR] accion: " + proto.getAction()) ;
+		 * System.out.println("[CONSUMIDOR] mensaje: " + proto.getMessage());
+		 */
+		System.out.println(new String(message.getBody()));
 	}
 }

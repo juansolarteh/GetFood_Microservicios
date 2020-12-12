@@ -105,7 +105,7 @@ public class PedidoImplService implements IPedidoService {
 	}
 	
 	@Override
-	public void deliverOrder(Long idPedido) throws Exception{
+	public void deliverOrder(Long idPedido) throws Exception,ResourceNotFoundException{
 		try {
 			Pedido pedido = findById(idPedido);
 			pedido.adjustOrderState();

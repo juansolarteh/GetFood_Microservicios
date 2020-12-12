@@ -36,7 +36,7 @@ public class OrderPublisher {
         factory.setPassword(password);;
         try (Connection connection = factory.newConnection();
             Channel channel = connection.createChannel()) {
-            	channel.queueDeclare(QUEUE_NAME, true, false, false, null);
+            	channel.queueDeclare(QUEUE_NAME, false, false, false, null);
 	            channel.basicPublish("", QUEUE_NAME,MessageProperties.PERSISTENT_TEXT_PLAIN,message.getBytes("UTF-8"));
 	            System.out.println(" [x] Pedido Publicado en la Cola "+ QUEUE_NAME);
         }
