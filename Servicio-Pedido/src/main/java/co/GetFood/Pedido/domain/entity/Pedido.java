@@ -33,6 +33,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import com.sun.tools.javac.Main;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.annotations.Expose;
 /**
  * Representa un pedido de un respectivo restaurante. Mapeado con la BD.
  * 
@@ -46,31 +47,43 @@ public class Pedido implements Serializable{
 	@Transient
 	private OrderState orderState;
 
+	@Expose
 	@Id
 	@Column
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
+	@Expose
 	@Column
 	private long id_restaurante;
 	
+	@Expose
 	@Column
 	private long id_cliente;
 	
+	@Expose
 	@Column
 	private String nombre_restaurante;
 	
+	@Expose
 	@Column
 	private String direccion_pedido;
 	
+	@Expose
 	@Column
 	private int telefono_pedido;
 	
+	@Expose
 	@Column
 	private int valor_pedido;
 	
 	@Column
 	private String state;
+	
+	@Expose
+	@OneToMany(targetEntity = Item.class, cascade = CascadeType.ALL)
+	@JoinColumn(name="id_pedido", referencedColumnName = "id")
+	private List<Item> items = new ArrayList<Item>();
 	
 	
 	public String whatIsTheState() {
@@ -92,10 +105,6 @@ public class Pedido implements Serializable{
 	public void setState(String state) {
 		this.state = state;
 	}
-
-	@OneToMany(targetEntity = Item.class, cascade = CascadeType.ALL)
-	@JoinColumn(name="id_pedido", referencedColumnName = "id")
-	private List<Item> items = new ArrayList<Item>();
 	
 	public long getId() {
 		return id;
@@ -176,7 +185,7 @@ public class Pedido implements Serializable{
 	}
 	
 	public void orderSendOut() {
-	   orderState = orderState.orderSendOut();
+	   orderState =  orderState.orderSendOut();
 	   setState(orderState.getClass().getSimpleName());
 	}
 
@@ -189,18 +198,5 @@ public class Pedido implements Serializable{
 		  orderState = new PayedState(this);
 		  setState(orderState.getClass().getSimpleName());
 	}
-	/*
-	public JsonObject toJson() {
-		JsonObject pedidoJson = new JsonObject();
-		JsonArray itemJson = new JsonArray();
-		pedidoJson.addProperty("id", id);
-		pedidoJson.addProperty("id_restaurante", id_restaurante);
-		pedidoJson.addProperty("id_cliente", id_cliente);
-		pedidoJson.addProperty("direccion_pedido", direccion_pedido);
-		pedidoJson.addProperty("nombre_restaurante", nombre_restaurante);
-		pedidoJson.addProperty("telefono_pedido", telefono_pedido);
-		pedidoJson.addProperty("valor_pedido", valor_pedido);
-		itemJson.add(items);
-	}*/
 	
 }

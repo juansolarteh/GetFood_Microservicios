@@ -8,6 +8,7 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.MessageProperties;
 
+import aj.org.objectweb.asm.Type;
 import co.GetFood.Pedido.domain.entity.Pedido;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -42,15 +43,15 @@ public class OrderPublisher {
         }
 	}
 	
-	private String toJson(Object objeto) {
+	private String OrdertoJson(Pedido pedido) {
 		//Gson gson = new Gson();
-		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
-		return gson.toJson(objeto);
+		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation() .create();
+		return gson.toJson(pedido);
 	}
 	
 	public void publicar(Pedido pedido) throws IOException, TimeoutException {
-		String message = toJson(pedido);
+		String message = OrdertoJson(pedido);
 		Protocol proto = new Protocol("create",message);
-		publicarEnCola(toJson(proto));
+		publicarEnCola(new Gson().toJson(proto));
 	}
 }

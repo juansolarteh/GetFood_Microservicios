@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.gson.annotations.Expose;
 /**
  * Representa un item de un pedido. Mapeado con la BD.
  * 
@@ -33,18 +34,23 @@ public class Item implements Serializable{
 	@JsonIgnore
 	private long idItem;
 	
+	@Expose
 	@Column
 	private long id_producto;
 	
+	@Expose
 	@Column 
 	private String nombre_product;
 	
+	@Expose
 	@Column 
 	private int cantidad_producto;
 	
+	@Expose
 	@Column 
 	private int precio_producto;
 	
+	@Expose
 	@Column 
 	private int precio_item;
 	

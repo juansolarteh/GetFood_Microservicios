@@ -14,7 +14,7 @@ import co.GetFood.HisPedido.presentation.rest.exceptions.ResourceNotFoundExcepti
  *
  */
 
-public interface IPedidoService {
+public interface IHistorialPedidoService {
 	
 	public List<Pedido> findAll();
 

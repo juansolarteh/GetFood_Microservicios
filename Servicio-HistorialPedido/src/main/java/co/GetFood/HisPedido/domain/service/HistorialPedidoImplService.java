@@ -23,7 +23,7 @@ import co.GetFood.HisPedido.presentation.rest.exceptions.ResourceNotFoundExcepti
  */
 
 @Service
-public class PedidoImplService implements IPedidoService{
+public class HistorialPedidoImplService implements IHistorialPedidoService{
 	/**
 	 * Inyección de pedido Dao y orderState
 	 */
