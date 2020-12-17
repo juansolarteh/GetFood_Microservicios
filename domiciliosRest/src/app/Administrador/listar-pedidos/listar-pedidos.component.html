@@ -40,7 +40,14 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <button (click) = "Despachar(pedido)"class= "btn btn-warning" style="text-align: center; margin-left: 10%;">Despachar</button>
+                        </td>
+                        <td>
+                            <div *ngIf = "isSent(pedido); else enviado">
+                                <button class= "btn btn-warning" style="text-align: center; margin-left: 10%;" disabled>Enviado</button>
+                            </div>
+                            <ng-template #enviado>
+                                <button (click) = "Despachar(pedido)"class= "btn btn-warning" style="text-align: center; margin-left: 10%;">Enviar</button>
+                            </ng-template>  
                         </td>
                     </tr>
                 </tbody>

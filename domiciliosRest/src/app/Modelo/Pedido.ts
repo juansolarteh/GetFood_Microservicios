@@ -64,4 +64,5 @@ export class Pedido{
     getNumberItems():number{
         return this.items.length;
     }
+
 }

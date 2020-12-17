@@ -15,6 +15,7 @@ export class ServiceService {
   UrlPlato='http://localhost:8001/plato';
   UrlRestaurante='http://localhost:8006/restaurante';
   UrlPedidos='http://localhost:8010/pedidos';
+  urlHistorial='http://localhost:8011/historial'
 
   getMenu(idRest:number){
     return this.http.get<Plato[]>(this.UrlPlato+"/rest/"+idRest);
@@ -71,6 +72,9 @@ export class ServiceService {
     return this.http.delete<Pedido>(this.UrlPedidos+"/deliver/"+pedido.id)
   }
   sendOrder(pedido:Pedido){
-    return this.http.put<Pedido>(this.UrlPedidos+"/send/"+pedido.id,pedido)
+    return this.http.get<Pedido>(this.UrlPedidos+"/send/"+pedido.id)
+  }
+  getHistorialPedidos(idRest:number){
+    return this.http.get<Pedido[]>(this.urlHistorial+"/rest/"+idRest)
   }
 }

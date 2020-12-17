@@ -1,3 +1,0 @@
-INSERT INTO pedidos(id,id_restaurante, id_cliente, nombre_restaurante, direccion_pedido, telefono_pedido, valor_pedido,state) values(01,101,102,'brazas','Carrera 13',314565,10000,'PayedState');
-INSERT INTO pedidos(id,id_restaurante, id_cliente, nombre_restaurante, direccion_pedido, telefono_pedido, valor_pedido,state) values(02,102,103,'Carantanta','Carrera 100',313165,50000,'SendNotPayState');
-INSERT INTO pedidos(id,id_restaurante, id_cliente, nombre_restaurante, direccion_pedido, telefono_pedido, valor_pedido,state) values(03,103,104,'Burguer King','Carrera 10',3131265,25000,'SendState');

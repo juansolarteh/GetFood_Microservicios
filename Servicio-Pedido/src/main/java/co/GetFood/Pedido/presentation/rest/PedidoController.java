@@ -83,7 +83,7 @@ public class PedidoController {
 		return pedidoService.create(pedido);
 	}
 	
-	@RequestMapping(value = "send/{id_pedido}", method = RequestMethod.PUT, produces = "application/json")
+	@RequestMapping(value = "send/{id_pedido}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
 	public Pedido updateSend(@PathVariable Long id_pedido) throws ResourceNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
 		return pedidoService.SendOrder(id_pedido);

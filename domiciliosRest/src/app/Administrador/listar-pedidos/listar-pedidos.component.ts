@@ -5,6 +5,8 @@ import { Pedido } from 'src/app/Modelo/Pedido';
 import { Error } from 'src/app/Modelo/Error';
 import { Item } from 'src/app/Modelo/Item'
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
+import { pseudoRandomBytes } from 'crypto';
+import { BrowserStack } from 'protractor/built/driverProviders';
 
 @Component({
   selector: 'app-listar-pedidos',
@@ -19,6 +21,8 @@ export class ListarPedidosComponent implements OnInit {
   historialPedidos:Pedido[];
   errores:Error[];
   bandera:boolean = false;
+  pedidoAux:Pedido;
+  pedidosAux:Pedido[];
   constructor(private service:ServiceService, private router:Router, public modal:NgbModal) { }
   ngOnInit(){
     let restnit = localStorage.getItem("restnit");
@@ -47,17 +51,33 @@ export class ListarPedidosComponent implements OnInit {
   }
 
   getHistorial(){
-    //Aqui deberia ir toda la logica de suscriptor de evento para traer los pedidos con nit(this.restNit)
-    //this.historialPedidos = new Array
-    //this.historialPedidos.push(new Pedido(12,"aa"))
-    //this.historialPedidos[0].addItem(new Item(1,"bb",3,434))
-    //this.historialPedidos[0].setDireccion("cara")
-    //this.historialPedidos[0].setTelefono(12345)
+    this.service.getHistorialPedidos(this.restNit).subscribe(
+      data=>{
+        if(data!=null && data!=undefined){
+          this.historialPedidos=data
+          this.bandera=true
+        }
+    },
+      response=>{
+        if(this.bandera==false){
+          alert("No ha realizado ningun pedido")
+          this.errores=response.error.errors
+        }
+      });
   }
-  Despachar(pedido){
+  Despachar(pedido:Pedido){
     this.service.sendOrder(pedido).subscribe(data=>{
-      pedido=data
+      for (let index = 0; index < this.pedidos.length; index++) {
+        if(this.pedidos[index].id == pedido.id){
+          this.pedidos[index].state = "SendState"
+          index = this.pedidos.length
+        }
+      }
     })
-    //Logica de publicador de evento para encolar los pedidos despachados
+  }
+
+  isSent(pedido:Pedido){
+    if(pedido.state == "SendNotPayState" || pedido.state == "SendState") return true
+        return false
   }
 }
